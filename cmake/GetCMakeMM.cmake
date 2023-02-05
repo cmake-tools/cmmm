@@ -2,7 +2,7 @@
 #[[[ @module
 #]]
 
-if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.10")
+if(${CMAKE_VERSION} VERSION_GREATER "3.9.2")
   include_guard(GLOBAL)
 endif()
 
@@ -14,9 +14,8 @@ endif()
 
 set(CURRENT_GETCMMM_FILE_VERSION "${GETCMMM_FILE_VERSION}" CACHE INTERNAL "GetCMakeMM version.")
 
-
 #[[[
-# Download and Load CMakeMM
+  Download and Load CMakeMM
 #]]
 function(cmmm)
   if(${CMAKE_VERSION} VERSION_LESS "3.5")
