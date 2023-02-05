@@ -63,3 +63,4 @@ cmake-build-relwithdebinfo/
 Makefile
 
 # project specific
+**/generated/**
