@@ -28,13 +28,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Setup python
-      uses: actions/setup-python@v4
-      with:
-        python-version: ^3
-        cache: pip
     - name: Install python packages
-      run: pip install CMinx
+      run: pip install -U sphinx CMinx myst-parser
     - name: Setup Pages
       uses: actions/configure-pages@v3
     - name: Build with Jekyll
