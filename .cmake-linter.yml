@@ -2,7 +2,7 @@
 format:
   line_width: 250
 lint:
-  disabled_codes: []
+  disabled_codes: [C0112]
   function_pattern: '[0-9a-z_]+'
   macro_pattern: '[0-9A-Z_]+'
   global_var_pattern: '[A-Za-z][0-9a-zA-Z_]+'
