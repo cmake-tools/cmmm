@@ -1,10 +1,10 @@
 import cminx
 cminx.main(['-o', './generated/CMinx', '-r', '../cmake'])
 
-project = '@CMAKE_PROJECT@'
+project = '@PROJECT_NAME@'
 copyright = ''
 author = ''
-release = '@CMAKE_VERSION@'
+release = '@PROJECT_VERSION@'
 
 extensions = []
 
