@@ -6,8 +6,13 @@ set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_SOURCE_DIR}/cmake"
 
 include(GetCMakeMM)
 
-option(BUILD_TESTS "Build the tests" OFF)
+option(BUILD_DOCS "Build the docs" ON)
+option(BUILD_TESTS "Build the tests" ON)
 
 if(BUILD_TESTS)
   add_subdirectory(tests)
+endif()
+
+if(BUILD_DOCS)
+  add_subdirectory(docs)
 endif()

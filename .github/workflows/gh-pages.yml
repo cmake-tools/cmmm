@@ -29,10 +29,16 @@ jobs:
       uses: actions/checkout@v3
     - name: Install python packages
       run: pip install -U sphinx CMinx myst-parser
-    - name: Setup Pages
-      uses: actions/configure-pages@v3
+    - name: ⬇️ Setup CMake
+      uses: lukka/get-cmake@latest
+      with:
+        cmakeVersion: ^3
+    - name: Run CMake
+      run: cmake -S ${{ github.workspace }} -B ${{ github.workspace }}/build -G "Ninja Multi-Config" -Werror=dev -Werror=deprecated
     - name: Generate docs
       run: sphinx-build ${{ github.workspace }}/docs/ ${{ github.workspace }}/docs/build -b html
+    - name: Setup Pages
+      uses: actions/configure-pages@v3
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
