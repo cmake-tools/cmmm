@@ -30,7 +30,7 @@ jobs:
     - name: Install python packages
       run: pip install -U sphinx CMinx myst-parser
     - name: Generate docs
-      run: make -C ./docs html
+      run: make -C ./docs html; sphinx-build ./docs/ ./docs/build -b html
     - name: Setup Pages
       uses: actions/configure-pages@v3
     - name: Upload artifact
