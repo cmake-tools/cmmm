@@ -1,3 +1,3 @@
 include(GetCMakeMM)
 
-cmmm()
+cmmm(VERSION latest TIMEOUT 30 INACTIVITY_TIMEOUT 20 TLS_VERIFY ON)
