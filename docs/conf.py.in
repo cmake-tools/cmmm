@@ -8,8 +8,8 @@ release = '@PROJECT_VERSION@'
 
 extensions = []
 
-templates_path = ['_templates']
+templates_path = ['templates']
 exclude_patterns = []
 
 html_theme = 'alabaster'
-html_static_path = ['_static']
+html_static_path = ['static']
