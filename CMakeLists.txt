@@ -4,8 +4,6 @@ project(CMMM VERSION 0.1 LANGUAGES NONE)
 
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-include(GetCMakeMM)
-
 option(BUILD_DOCS "Build the docs" ON)
 option(BUILD_TESTS "Build the tests" ON)
 
