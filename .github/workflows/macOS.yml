@@ -33,21 +33,21 @@ jobs:
 
     - name: ⬇️ Setup CMake
       uses: lukka/get-cmake@latest
-      if: ${{ matrix.cmake_version >=2 && matrix.cmake_version <=6 }}
+      if: ${{ matrix.cmake_version <2 || matrix.cmake_version >6 }}
       with:
         cmakeVersion: ~3.${{ matrix.cmake_version }}
         ninjaVersion: ^1.11.1
 
     - name: ⬇️ Setup CMake
       uses: jwlawson/actions-setup-cmake@v1.13
-      if: ${{ matrix.cmake_version <2 || matrix.cmake_version >6 }}
+      if: ${{ matrix.cmake_version >=2 && matrix.cmake_version <=6 }}
       with:
         cmake-version: 3.${{ matrix.cmake_version }}.x
         github-api-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: 🔧 Generate with v3.${{ matrix.cmake_version }}
       if: ${{ matrix.cmake_version < 13 }}
-      run: cmake -E make_directory ${{ env.CMAKE_BINARY_PREFIX }}; cmake -E chdir ${{ env.CMAKE_BINARY_PREFIX }} cmake -G "Ninja" -Werror=dev -Werror=deprecated -DCMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}  ${{ github.workspace }}/${{ env.CMAKE_SOURCE_PREFIX
+      run: cmake -E make_directory ${{ env.CMAKE_BINARY_PREFIX }}; cmake -E chdir ${{ env.CMAKE_BINARY_PREFIX }} cmake -Werror=dev -Werror=deprecated -DCMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}  ${{ github.workspace }}/${{ env.CMAKE_SOURCE_PREFIX
         }}
 
     - name: 🔧 Generate with v3.${{ matrix.cmake_version }}
