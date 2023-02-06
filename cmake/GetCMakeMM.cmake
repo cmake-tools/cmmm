@@ -16,6 +16,10 @@ set(CURRENT_GETCMMM_FILE_VERSION "${GETCMMM_FILE_VERSION}" CACHE INTERNAL "GetCM
 
 #[[[
   Download and Load CMakeMM
+  :param NO_COLOR: Disable colors.
+  :param SHOW_PROGRESS: Print progress information as status messages until the operation is complete.
+  :keyword VERSION: Version of CMakeMM to download.
+  :type VERSION: string (use latest for the last version).
 #]]
 function(cmmm)
   if(${CMAKE_VERSION} VERSION_LESS "3.5")
@@ -26,7 +30,6 @@ function(cmmm)
   if(WIN32 OR DEFINED ENV{CLION_IDE} OR DEFINED ENV{DevEnvDir} OR DEFINED ENV{workspaceRoot})
     set(CMMM_NO_COLOR TRUE)
   endif()
-  set_property(GLOBAL PROPERTY CMMM_NO_COLOR ${CMMM_NO_COLOR})
 
   if(NOT DEFINED CMMM_VERSION OR CMMM_VERSION STREQUAL "latest")
     set(CMMM_URL "https://cmake-tools.github.io/cmmm/_static")
@@ -46,21 +49,18 @@ function(cmmm)
   else()
     set(CMMM_INACTIVITY_TIMEOUT_COMMAND "INACTIVITY_TIMEOUT;${CMMM_INACTIVITY_TIMEOUT}")
   endif()
-  set_property(GLOBAL PROPERTY CMMM_INACTIVITY_TIMEOUT ${CMMM_INACTIVITY_TIMEOUT})
 
   if(NOT DEFINED CMMM_TIMEOUT)
     set(CMMM_TIMEOUT_COMMAND "")
   else()
     set(CMMM_TIMEOUT_COMMAND "TIMEOUT;${CMMM_TIMEOUT}")
   endif()
-  set_property(GLOBAL PROPERTY CMMM_TIMEOUT ${CMMM_TIMEOUT})
 
   if(CMMM_SHOW_PROGRESS)
     set(CMMM_SHOW_PROGRESS_COMMAND "SHOW_PROGRESS")
   else()
     set(CMMM_SHOW_PROGRESS_COMMAND "")
   endif()
-  set_property(GLOBAL PROPERTY CMMM_SHOW_PROGRESS ${CMMM_SHOW_PROGRESS})
 
   string(ASCII 27 Esc)
 
@@ -75,14 +75,12 @@ function(cmmm)
       message(FATAL_ERROR "${Esc}[31m[CMMM] TLS_VERIFY must have value ON or OFF${Esc}[m")
     endif()
   endif()
-  set_property(GLOBAL PROPERTY CMMM_TLS_VERIFY ${CMMM_TLS_VERIFY})
 
   if(NOT DEFINED CMMM_TLS_CAINFO)
     set(CMMM_TLS_CAINFO_COMMAND "")
   else()
     set(CMMM_TLS_CAINFO_COMMAND "TLS_CAINFO;${CMMM_TLS_CAINFO}")
   endif()
-  set_property(GLOBAL PROPERTY CMMM_TLS_CAINFO ${CMMM_TLS_CAINFO})
 
   if(NOT CMAKEMM_INITIALIZED_${CMMM_TAG} OR NOT EXISTS "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
 
