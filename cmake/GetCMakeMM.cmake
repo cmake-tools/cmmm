@@ -15,11 +15,11 @@ endif()
 set(CURRENT_GETCMMM_FILE_VERSION "${GETCMMM_FILE_VERSION}" CACHE INTERNAL "GetCMakeMM version.")
 
 #[[[
-  Download and Load CMakeMM
-  :param NO_COLOR: Disable colors.
-  :param SHOW_PROGRESS: Print progress information as status messages until the operation is complete.
-  :keyword VERSION: Version of CMakeMM to download.
-  :type VERSION: string (use latest for the last version).
+#  Download and Load CMakeMM
+#  :param NO_COLOR: Disable colors.
+#  :param SHOW_PROGRESS: Print progress information as status messages until the operation is complete.
+#  :keyword VERSION: Version of CMakeMM to download.
+#  :type VERSION: string (use latest for the last version).
 #]]
 function(cmmm)
   if(${CMAKE_VERSION} VERSION_LESS "3.5")
@@ -91,10 +91,10 @@ function(cmmm)
     endif()
 
     file(DOWNLOAD "${CMMM_URL}/${CMMM_TAG}/CMakeMM.cmake" "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake"
-          ${CMMM_INACTIVITY_TIMEOUT_COMMAND}
-          ${CMMM_TIMEOUT_COMMAND}
-          ${CMMM_TLS_VERIFY_COMMAND}
-          ${CMMM_TLS_CAINFO_COMMAND}
+     #     ${CMMM_INACTIVITY_TIMEOUT_COMMAND}
+     #     ${CMMM_TIMEOUT_COMMAND}
+     #     ${CMMM_TLS_VERIFY_COMMAND}
+     #     ${CMMM_TLS_CAINFO_COMMAND}
           LOG CMMM_LOG
           STATUS CMAKECM_STATUS
           ${CMMM_SHOW_PROGRESS_COMMAND})
