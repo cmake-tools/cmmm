@@ -112,7 +112,6 @@ function(cmmm)
   include("${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
 
   set(ARGN "DESTINATION;${CMMM_DESTINATION};TAG;${CMMM_TAG};${ARGN}")
-  list(REMOVE_DUPLICATES ARGN)
 
   cmmm_entry("${ARGN}")
 endfunction()
