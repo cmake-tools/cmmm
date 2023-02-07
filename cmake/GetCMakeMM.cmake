@@ -1,7 +1,5 @@
 # cmake-format: off
 # Copyright 2023 flagarde
-#[[[ @module
-#]]
 
 if(${CMAKE_VERSION} VERSION_GREATER "3.9.6")
   include_guard(GLOBAL)

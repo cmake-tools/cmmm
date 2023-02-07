@@ -1,5 +1,5 @@
 import cminx
-cminx.main(['-o', './generated/CMinx', '-r', '../cmake'])
+cminx.main(['-o', './cmake', '-r', '../cmake', "-s", ".cminx.yaml"])
 
 project = '@PROJECT_NAME@'
 copyright = ''
