@@ -1,3 +1,4 @@
+# cmake-format: off
 # Copyright 2023 flagarde
 #[[[ @module
 #]]
@@ -92,14 +93,14 @@ function(cmmm)
       message("${Esc}[1;35m-- [CMMM] Downloading CMakeMM.cmake@${CMMM_VERSION} (${CMMM_TAG}) to ${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake${Esc}[m")
     endif()
 
-    file(DOWNLOAD "${CMMM_URL}/${CMMM_TAG}/CMakeMM.cmake" "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake"
-          ${CMMM_INACTIVITY_TIMEOUT_COMMAND}
-          ${CMMM_TIMEOUT_COMMAND}
-          ${CMMM_TLS_VERIFY_COMMAND}
-          ${CMMM_TLS_CAINFO_COMMAND}
-          LOG CMMM_LOG
-          STATUS CMAKECM_STATUS
-          ${CMMM_SHOW_PROGRESS_COMMAND})
+    if(NOT CMAKE_VERSION VERSION_LESS 3.2)
+      file(LOCK "${CMMM_DESTINATION}/CMakeMMLock.cmake")
+    endif()
+
+    file(
+      DOWNLOAD "${CMMM_URL}/${CMMM_TAG}/CMakeMM.cmake" "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake"
+      ${CMMM_INACTIVITY_TIMEOUT_COMMAND} ${CMMM_TIMEOUT_COMMAND} ${CMMM_TLS_VERIFY_COMMAND} ${CMMM_TLS_CAINFO_COMMAND} LOG CMMM_LOG STATUS CMAKECM_STATUS ${CMMM_SHOW_PROGRESS_COMMAND})
+
     list(GET CMAKECM_STATUS 0 CMAKECM_CODE)
     list(GET CMAKECM_STATUS 1 CMAKECM_MESSAGE)
     if(${CMAKECM_CODE})
@@ -109,6 +110,11 @@ function(cmmm)
         message(FATAL_ERROR "${Esc}[31m[CMMM] Error downloading CMakeMM.cmake : ${CMAKECM_MESSAGE}${Esc}[m")
       endif()
     endif()
+
+    if(NOT CMAKE_VERSION VERSION_LESS 3.2)
+      file(LOCK "${CMMM_DESTINATION}/CMakeMMLock.cmake" RELEASE)
+    endif()
+
   endif()
 
   include("${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
@@ -117,3 +123,4 @@ function(cmmm)
 
   cmmm_entry("${ARGN}")
 endfunction()
+# cmake-format: on
