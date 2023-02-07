@@ -126,7 +126,7 @@ rst:
   file_extensions_in_modules: false
 
   # Character to use as a separator between CMake directories and modules
-  module_path_separator: _
+  module_path_separator: /
 
   # A list of characters to be used for RST headers.
   # The character is selected by using the section depth to index
