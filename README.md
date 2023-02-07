@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://github.com/cmake-tools/cmmm"><img src="./docs/static/logo.png" width="300" title="cmmm logo" alt="cmmm"></a>
+  <a href="https://cmake-tools.github.io/cmmm"><img src="./docs/static/logo.png" width="300" title="cmmm logo" alt="cmmm"></a>
 
 CMakeMM
 
