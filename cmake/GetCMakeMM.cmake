@@ -15,7 +15,9 @@ endif()
 set(CURRENT_GETCMMM_FILE_VERSION "${GETCMMM_FILE_VERSION}" CACHE INTERNAL "GetCMakeMM version.")
 
 #[[[
+#
 #  Download and Load CMakeMM
+#
 #  :param NO_COLOR: Disable colors.
 #  :param SHOW_PROGRESS: Print progress information as status messages until the operation is complete.
 #  :keyword VERSION: Version of CMakeMM to download.
