@@ -1,11 +1,9 @@
-Welcome to monProjet's documentation!
-=====================================
+Welcome to CMMM's documentation!
+================================
 
 .. toctree::
     :maxdepth: 2
     :caption: Contents:
-
-generated/CMinx/index
 
 Indices and tables
 ==================
