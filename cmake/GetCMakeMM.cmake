@@ -91,10 +91,10 @@ function(cmmm)
     endif()
 
     file(DOWNLOAD "${CMMM_URL}/${CMMM_TAG}/CMakeMM.cmake" "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake"
-     #     ${CMMM_INACTIVITY_TIMEOUT_COMMAND}
-     #     ${CMMM_TIMEOUT_COMMAND}
-     #     ${CMMM_TLS_VERIFY_COMMAND}
-     #     ${CMMM_TLS_CAINFO_COMMAND}
+          ${CMMM_INACTIVITY_TIMEOUT_COMMAND}
+          ${CMMM_TIMEOUT_COMMAND}
+          ${CMMM_TLS_VERIFY_COMMAND}
+          ${CMMM_TLS_CAINFO_COMMAND}
           LOG CMMM_LOG
           STATUS CMAKECM_STATUS
           ${CMMM_SHOW_PROGRESS_COMMAND})
