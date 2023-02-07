@@ -20,8 +20,8 @@ set(CURRENT_GETCMMM_FILE_VERSION "${GETCMMM_FILE_VERSION}" CACHE INTERNAL "GetCM
 #
 #  :param NO_COLOR: Disable colors.
 #  :param SHOW_PROGRESS: Print progress information as status messages until the operation is complete.
-#  :keyword VERSION: Version of CMakeMM to download.
-#  :type VERSION: string (use latest for the last version).
+#  :keyword VERSION: Version of CMakeMM to download (use one of the versions in https://github.com/cmake-tools/cmmm/releases or 'latest' for the last version).
+#  :type VERSION: string.
 #]]
 function(cmmm)
   if(${CMAKE_VERSION} VERSION_LESS "3.5")
