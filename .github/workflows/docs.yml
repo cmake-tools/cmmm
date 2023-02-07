@@ -23,7 +23,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: Install python packages
-      run: pip install -U sphinx CMinx myst-parser
+      run: pip install -U sphinx CMinx myst-parser sphinx_rtd_theme
     - name: ⬇️ Setup CMake
       uses: lukka/get-cmake@latest
       with:

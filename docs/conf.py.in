@@ -1,15 +1,22 @@
 import cminx
-cminx.main(['-o', './cmake', '-r', '../cmake', "-s", ".cminx.yaml"])
+import sphinx_rtd_theme
 
 project = '@PROJECT_NAME@'
-copyright = ''
-author = ''
+copyright = '@PROJECT_COPYRIGHT@'
+author = '@PROJECT_AUTHOR@'
 release = '@PROJECT_VERSION@'
 
-extensions = []
+extensions = [
+'sphinx_rtd_theme',
+]
+
+html_css_files = ['css/custom.css',]
 
 templates_path = ['templates']
 exclude_patterns = []
 
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
+html_theme_options = {}
 html_static_path = ['static']
+
+cminx.main(['-o', './cmake', '-r', '../cmake', "-s", ".cminx.yaml"])
