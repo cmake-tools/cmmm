@@ -85,16 +85,16 @@ function(cmmm)
     set(CMMM_TLS_CAINFO_COMMAND "TLS_CAINFO;${CMMM_TLS_CAINFO}")
   endif()
 
+  if(NOT CMAKE_VERSION VERSION_LESS 3.2)
+    file(LOCK "${CMMM_DESTINATION}/CMakeMMLock.cmake")
+  endif()
+
   if(NOT CMAKEMM_INITIALIZED_${CMMM_TAG} OR NOT EXISTS "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
 
     if(CMMM_NO_COLOR)
       message("-- [CMMM] Downloading CMakeMM.cmake@${CMMM_VERSION} (${CMMM_TAG}) to ${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
     else()
       message("${Esc}[1;35m-- [CMMM] Downloading CMakeMM.cmake@${CMMM_VERSION} (${CMMM_TAG}) to ${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake${Esc}[m")
-    endif()
-
-    if(NOT CMAKE_VERSION VERSION_LESS 3.2)
-      file(LOCK "${CMMM_DESTINATION}/CMakeMMLock.cmake")
     endif()
 
     file(
@@ -111,11 +111,6 @@ function(cmmm)
         message(FATAL_ERROR "${Esc}[31m[CMMM] Error downloading CMakeMM.cmake : ${CMAKECM_MESSAGE}${Esc}[m")
       endif()
     endif()
-
-    if(NOT CMAKE_VERSION VERSION_LESS 3.2)
-      file(LOCK "${CMMM_DESTINATION}/CMakeMMLock.cmake" RELEASE)
-    endif()
-
   endif()
 
   include("${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
@@ -123,5 +118,10 @@ function(cmmm)
   set(ARGN "DESTINATION;${CMMM_DESTINATION};TAG;${CMMM_TAG};${ARGN}")
 
   cmmm_entry("${ARGN}")
+
+  if(NOT CMAKE_VERSION VERSION_LESS 3.2)
+    file(LOCK "${CMMM_DESTINATION}/CMakeMMLock.cmake" RELEASE)
+  endif()
+
 endfunction()
 # cmake-format: on
