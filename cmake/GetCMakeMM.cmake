@@ -20,6 +20,16 @@ unset(GETCMMM_FILE_VERSION)
 #  :param SHOW_PROGRESS: Print progress information as status messages until the operation is complete.
 #  :keyword VERSION: Version of CMakeMM to download (use one of the versions in https://github.com/cmake-tools/cmmm/releases or 'latest' for the last version. Only for testing !).
 #  :type VERSION: string
+#  :keyword DESTINATION: Where to install files.
+#  :type DESTINATION: path
+#  :keyword INACTIVITY_TIMEOUT: Terminate the operation after a period of inactivity.
+#  :type seconds
+#  :keyword TIMEOUT: Terminate the operation after a given total time has elapsed.
+#  :type seconds
+#  :keyword TLS_VERIFY: Specify whether to verify the server certificate for https:// URLs. The default is to not verify. If this option is not specified, the value of the CMAKE_TLS_VERIFY variable will be used instead.
+#  :type ON/OFF
+#  :keyword TLS_CAINFO: Specify a custom Certificate Authority file for https:// URLs. If this option is not specified, the value of the CMAKE_TLS_CAINFO variable will be used instead.
+#  :type file
 #]]
 function(cmmm)
   if(${CMAKE_VERSION} VERSION_LESS "3.5")
