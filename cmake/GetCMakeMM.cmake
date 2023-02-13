@@ -15,7 +15,6 @@ set(CURRENT_GETCMMM_FILE_VERSION "${GETCMMM_FILE_VERSION}" CACHE INTERNAL "GetCM
 unset(GETCMMM_FILE_VERSION)
 
 #[[[
-#
 #  Download and Load CMakeMM
 #
 #  :param NO_COLOR: Disable colors.
