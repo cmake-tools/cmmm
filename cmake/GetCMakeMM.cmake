@@ -62,7 +62,7 @@ function(cmmm)
       message(FATAL_ERROR "${Esc}[1;31m${MESSAGE}${Esc}[0;31m")
     else()
       message(FATAL_ERROR "${Esc}[1;31m${MESSAGE}${Esc}[m")
-    #endif()
+    endif()
   endfunction()
 
   if(NOT DEFINED CMMM_VERSION OR CMMM_VERSION STREQUAL "latest")
