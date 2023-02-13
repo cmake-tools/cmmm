@@ -24,13 +24,13 @@ unset(GETCMMM_FILE_VERSION)
 #  :keyword DESTINATION: Where to install files.
 #  :type DESTINATION: path
 #  :keyword INACTIVITY_TIMEOUT: Terminate the operation after a period of inactivity.
-#  :type seconds
+#  :type INACTIVITY_TIMEOUT: seconds
 #  :keyword TIMEOUT: Terminate the operation after a given total time has elapsed.
-#  :type seconds
+#  :type TIMEOUT: seconds
 #  :keyword TLS_VERIFY: Specify whether to verify the server certificate for https:// URLs. The default is to not verify. If this option is not specified, the value of the CMAKE_TLS_VERIFY variable will be used instead.
-#  :type ON/OFF
+#  :type TLS_VERIFY: ON/OFF
 #  :keyword TLS_CAINFO: Specify a custom Certificate Authority file for https:// URLs. If this option is not specified, the value of the CMAKE_TLS_CAINFO variable will be used instead.
-#  :type file
+#  :type TLS_CAINFO: file
 #]]
 function(cmmm)
   if(${CMAKE_VERSION} VERSION_LESS "3.5")
