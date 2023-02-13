@@ -19,8 +19,8 @@ set(CURRENT_GETCMMM_FILE_VERSION "${GETCMMM_FILE_VERSION}" CACHE INTERNAL "GetCM
 #
 #  :param NO_COLOR: Disable colors.
 #  :param SHOW_PROGRESS: Print progress information as status messages until the operation is complete.
-#  :keyword VERSION: Version of CMakeMM to download (use one of the versions in https://github.com/cmake-tools/cmmm/releases or 'latest' for the last version).
-#  :type VERSION: string.
+#  :keyword VERSION: Version of CMakeMM to download (use one of the versions in https://github.com/cmake-tools/cmmm/releases or 'latest' for the last version. Only for testing !).
+#  :type VERSION: string
 #]]
 function(cmmm)
   if(${CMAKE_VERSION} VERSION_LESS "3.5")
@@ -107,6 +107,16 @@ function(cmmm)
         message(FATAL_ERROR "[CMMM] Error downloading CMakeMM.cmake : ${CMAKECM_MESSAGE}")
       else()
         message(FATAL_ERROR "${Esc}[31m[CMMM] Error downloading CMakeMM.cmake : ${CMAKECM_MESSAGE}${Esc}[m")
+      endif()
+    else()
+      file(SHA256 "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake" CMakeMMSHA256)
+      if(${CMakeMMSHA256} STREQUAL "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855")
+        file(REMOVE "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
+        if(CMMM_NO_COLOR OR (CMAKE_VERSION VERSION_GREATER 3.20.6))
+          message(FATAL_ERROR "[CMMM] Error downloading CMakeMM.cmake : Empty file")
+        else()
+          message(FATAL_ERROR "${Esc}[31m[CMMM] Error downloading CMakeMM.cmake : Empty file${Esc}[m")
+        endif()
       endif()
     endif()
   endif()
