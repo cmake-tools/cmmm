@@ -16,7 +16,6 @@ unset(GETCMMM_FILE_VERSION)
 
 #[[[
 #  Download and Load CMakeMM
-#
 #  :param NO_COLOR: Disable colors.
 #  :param SHOW_PROGRESS: Print progress information as status messages until the operation is complete.
 #  :keyword VERSION: Version of CMakeMM to download (use one of the versions in https://github.com/cmake-tools/cmmm/releases or 'latest' for the last version. Only for testing !).
