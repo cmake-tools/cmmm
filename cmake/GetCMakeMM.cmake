@@ -148,10 +148,10 @@ function(cmmm)
       unlock()
     endif()
   endif()
-  
+
   include("${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
   cmmm_entry("DESTINATION;${CMMM_DESTINATION};TAG;${CMMM_TAG};${ARGN}")
   unlock()
-  
+
 endfunction()
 # cmake-format: on
