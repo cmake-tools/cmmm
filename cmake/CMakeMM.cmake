@@ -13,7 +13,7 @@ endfunction()
 
 # Empty cmmm_entry for testing
 function(cmmm_entry)
-  cmake_parse_arguments(CMMM "" "TAG" "" "${ARGN}")
+  cmake_parse_arguments(CMMM "IGNORE_NEW_VERSION" "VERSION;TAG;DESTINATION" "" "${ARGN}")
   message("Parameters : ${ARGN}")
   cmmm_check_updates(VERSION ${CMMM_VERSION} DESTINATION ${CMMM_DESTINATION} "${CMMM_IGNORE_NEW_VERSION}")
   set(CMAKEMM_INITIALIZED_${CMMM_TAG} TRUE CACHE INTERNAL "CMakeMM ${CMMM_TAG} is initialized.")
