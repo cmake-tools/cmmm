@@ -109,7 +109,7 @@ function(cmmm)
   endif()
 
   if(NOT DEFINED CMMM_RETRIES)
-    set(CMMM_RETRIES "10")
+    set(CMMM_RETRIES "0")
   endif()
 
   set(CMMM_RETRIES_DONE "0")
