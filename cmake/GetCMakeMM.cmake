@@ -42,6 +42,9 @@ function(cmmm)
   if(WIN32 OR DEFINED ENV{CLION_IDE} OR DEFINED ENV{DevEnvDir} OR DEFINED ENV{workspaceRoot})
     set(CMMM_NO_COLOR TRUE)
   endif()
+  if(ENV{CI} AND NOT NO_COLOR)
+    set(CMMM_NO_COLOR FALSE)
+  endif()
 
   # Unlock file
   function(unlock)
