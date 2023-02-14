@@ -64,3 +64,6 @@ Makefile
 
 # project specific
 **/generated/**
+
+# latest files
+docs/static/latest
