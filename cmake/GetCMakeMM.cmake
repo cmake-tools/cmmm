@@ -104,12 +104,12 @@ function(cmmm)
     file(LOCK "${CMMM_DESTINATION}/CMakeMM.cmake.lock")
   endif()
 
-  if(EXISTS "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
-    file(SHA256 "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake" CMakeMMSHA256)
-  endif()
-
   if(NOT DEFINED CMMM_RETRIES)
     set(CMMM_RETRIES "0")
+  endif()
+
+  if(EXISTS "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
+    file(SHA256 "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake" CMakeMMSHA256)
   endif()
 
   set(CMMM_RETRIES_DONE "0")
