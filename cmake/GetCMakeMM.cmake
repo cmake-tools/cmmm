@@ -92,8 +92,6 @@ function(cmmm)
 
   if(CMMM_SHOW_PROGRESS)
     set(CMMM_SHOW_PROGRESS_COMMAND "SHOW_PROGRESS")
-  else()
-    set(CMMM_SHOW_PROGRESS_COMMAND "")
   endif()
 
   if(NOT DEFINED CMMM_TLS_VERIFY)
