@@ -32,7 +32,7 @@ unset(GETCMMM_FILE_VERSION)
 #  :keyword TLS_CAINFO: Specify a custom Certificate Authority file for https:// URLs. If this option is not specified, the value of the CMAKE_TLS_CAINFO variable will be used instead.
 #  :type TLS_CAINFO: file
 #  :keyword RETRIES: Specify the number of retries if download fails.
-#  :type TLS_CAINFO: int or INFINITY
+#  :type RETRIES: int>=0 or INFINITY
 #]]
 function(cmmm)
   if(${CMAKE_VERSION} VERSION_LESS "3.5")
