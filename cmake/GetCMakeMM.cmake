@@ -162,7 +162,7 @@ function(cmmm)
   endwhile()
 
   include("${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
-  cmmm_entry("DESTINATION;${CMMM_DESTINATION};TAG;${CMMM_TAG};${ARGN}")
+  cmmm_entry("DESTINATION;${CMMM_DESTINATION};TAG;${CMMM_TAG};${ARGN};RETRIES;${CMMM_RETRIES}")
   unlock()
 
 endfunction()
