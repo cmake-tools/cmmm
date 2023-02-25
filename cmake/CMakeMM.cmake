@@ -42,7 +42,7 @@ function(cmmm_check_updates)
       endif()
 
       file(
-        DOWNLOAD "https://github.com/cmake-tools/cmmm/releases/download/Changelog.cmake" "${CMMM_CHANGELOG_FILE}"
+        DOWNLOAD "https://cmake-tools.github.io/cmmm/_static/Changelog.cmake" "${CMMM_CHANGELOG_FILE}"
         ${CMMM_INACTIVITY_TIMEOUT_COMMAND} ${CMMM_TIMEOUT_COMMAND} ${CMMM_TLS_VERIFY_COMMAND} ${CMMM_TLS_CAINFO_COMMAND} LOG CMMM_LOG STATUS CMAKECM_STATUS ${CMMM_SHOW_PROGRESS_COMMAND}
       )
       list(GET CMAKECM_STATUS 0 CMAKECM_CODE)
