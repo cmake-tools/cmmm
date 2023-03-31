@@ -42,8 +42,12 @@ function(cmmm)
 
   cmake_parse_arguments(CMMM "NO_COLOR;SHOW_PROGRESS" "VERSION;DESTINATION;INACTIVITY_TIMEOUT;TIMEOUT;TLS_VERIFY;TLS_CAINFO;RETRIES" "" "${ARGN}")
 
+  message(STATUS "CLICOLOR ${CLICOLOR}")
+
   if(DEFINED ENV{CLICOLOR_FORCE} AND NOT "$ENV{CLICOLOR_FORCE}" STREQUAL "0")
     set(CMMM_NO_COLOR FALSE)
+  elseif(DEFINED ENV{CLICOLOR} AND "$ENV{CLICOLOR}" STREQUAL "0")
+    set(CMMM_NO_COLOR TRUE)
   elseif(DEFINED ENV{CI} AND NOT CMMM_NO_COLOR)
     set(CMMM_NO_COLOR FALSE)
   elseif(WIN32 OR DEFINED ENV{DevEnvDir} OR DEFINED ENV{workspaceRoot} OR CMMM_NO_COLOR)
@@ -69,6 +73,8 @@ function(cmmm)
     endif()
     set(CMMM_RESET_COLOR "[0m")
   endif()
+
+  message(STATUS "FFFF555 ${CMAKE_COLOR_MAKEFILE}")
 
   # Unlock file
   function(unlock)
