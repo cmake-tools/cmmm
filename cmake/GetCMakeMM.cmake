@@ -17,7 +17,15 @@ unset(GETCMMM_FILE_VERSION)
 #[[[
 #  Download and Load CMakeMM
 #
-#  :param NO_COLOR: Disable colors. Environment variables: `CLICOLOR_FORCE=1` to force ANSI escape code colors, and `CLICOLOR=0` to disable ANSI escape code colors.
+#  :param NO_COLOR: Disable colors.
+#  Environment variables:
+#  `CLICOLOR_FORCE=1` to force ANSI escape code colors.
+#  `CLICOLOR=0` to disable ANSI escape code colors.
+#  `CMMM_DEFAULT_COLOR` to set default color (`[0;35m`).
+#  `CMMM_FATAL_ERROR_COLOR` to set fatal error color (`[1;31m`).
+#  `CMMM_ERROR_COLOR` to set error color (`[0;31m`).
+#  `CMMM_WARN_COLOR` to set warn color (`[0;33m`).
+#  `CMMM_INFO_COLOR` to set info color (`[0;32m`).
 #  :param SHOW_PROGRESS: Print progress information as status messages until the operation is complete.
 #  :param NO_CHANGELOG: Disable changelog download.
 #  :keyword VERSION: Version of CMakeMM to download (use one of the versions in https://github.com/cmake-tools/cmmm/releases or 'latest' for the last version. Only for testing !).
@@ -41,8 +49,6 @@ function(cmmm)
   endif()
 
   cmake_parse_arguments(CMMM "NO_COLOR;SHOW_PROGRESS" "VERSION;DESTINATION;INACTIVITY_TIMEOUT;TIMEOUT;TLS_VERIFY;TLS_CAINFO;RETRIES" "" "${ARGN}")
-
-  message(STATUS "CLICOLOR ${CLICOLOR}")
 
   if(DEFINED ENV{CLICOLOR_FORCE} AND NOT "$ENV{CLICOLOR_FORCE}" STREQUAL "0")
     set(CMMM_NO_COLOR FALSE)
@@ -73,8 +79,6 @@ function(cmmm)
     endif()
     set(CMMM_RESET_COLOR "[0m")
   endif()
-
-  message(STATUS "FFFF555 ${CMAKE_COLOR_MAKEFILE}")
 
   # Unlock file
   function(unlock)
