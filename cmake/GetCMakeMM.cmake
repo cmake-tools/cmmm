@@ -17,7 +17,7 @@ unset(GETCMMM_FILE_VERSION)
 #[[[
 #  Download and Load CMakeMM
 #
-#  :param NO_COLOR: Disable colors.
+#  :param NO_COLOR: Disable colors. Environment variables: `CLICOLOR_FORCE=1` to force ANSI escape code colors, and `CLICOLOR=0` to disable ANSI escape code colors.
 #  :param SHOW_PROGRESS: Print progress information as status messages until the operation is complete.
 #  :param NO_CHANGELOG: Disable changelog download.
 #  :keyword VERSION: Version of CMakeMM to download (use one of the versions in https://github.com/cmake-tools/cmmm/releases or 'latest' for the last version. Only for testing !).
