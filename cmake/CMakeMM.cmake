@@ -2,6 +2,21 @@ if(${CMAKE_VERSION} VERSION_GREATER "3.9.6")
   include_guard(GLOBAL)
 endif()
 
+# The cmmm_entry
+function(cmmm_entry)
+  cmake_parse_arguments(CMMM "NO_CHANGELOG;NO_COLOR;SHOW_PROGRESS" "VERSION;TAG;DESTINATION;INACTIVITY_TIMEOUT;TIMEOUT;TLS_VERIFY;TLS_CAINFO;RETRIES" "" "${ARGN}")
+  cmmm_check_updates("${ARGN}")
+  cmmm_colors()
+  set_property(GLOBAL PROPERTY CMMM_SHOW_PROGRESS "${CMMM_SHOW_PROGRESS}")
+  set_property(GLOBAL PROPERTY CMMM_DESTINATION "${CMMM_DESTINATION}")
+  set_property(GLOBAL PROPERTY CMMM_INACTIVITY_TIMEOUT "${CMMM_INACTIVITY_TIMEOUT}")
+  set_property(GLOBAL PROPERTY CMMM_TIMEOUT "${CMMM_TIMEOUT}")
+  set_property(GLOBAL PROPERTY CMMM_TLS_VERIFY "${CMMM_TLS_VERIFY}")
+  set_property(GLOBAL PROPERTY CMMM_TLS_CAINFO "${CMMM_TLS_CAINFO}")
+  set_property(GLOBAL PROPERTY CMMM_RETRIES "${CMMM_RETRIES}")
+  set(CMAKEMM_INITIALIZED_${CMMM_TAG} TRUE CACHE INTERNAL "CMakeMM ${CMMM_TAG} is initialized.")
+endfunction()
+
 # Store colors
 function(cmmm_colors)
   if(DEFINED ENV{CLICOLOR_FORCE} AND NOT "$ENV{CLICOLOR_FORCE}" STREQUAL "0")
@@ -90,21 +105,6 @@ function(cmmm_check_updates)
       cmmm_print_changelog()
     endif()
   endif()
-endfunction()
-
-# The cmmm_entry
-function(cmmm_entry)
-  cmake_parse_arguments(CMMM "NO_CHANGELOG" "VERSION;TAG;DESTINATION" "" "${ARGN}")
-  cmmm_check_updates("${ARGN}")
-  cmmm_colors()
-  set_property(GLOBAL PROPERTY CMMM_SHOW_PROGRESS "${CMMM_SHOW_PROGRESS}")
-  set_property(GLOBAL PROPERTY CMMM_DESTINATION "${CMMM_DESTINATION}")
-  set_property(GLOBAL PROPERTY CMMM_INACTIVITY_TIMEOUT "${CMMM_INACTIVITY_TIMEOUT}")
-  set_property(GLOBAL PROPERTY CMMM_TIMEOUT "${CMMM_TIMEOUT}")
-  set_property(GLOBAL PROPERTY CMMM_TLS_VERIFY "${CMMM_TLS_VERIFY}")
-  set_property(GLOBAL PROPERTY CMMM_TLS_CAINFO "${CMMM_TLS_CAINFO}")
-  set_property(GLOBAL PROPERTY CMMM_RETRIES "${CMMM_RETRIES}")
-  set(CMAKEMM_INITIALIZED_${CMMM_TAG} TRUE CACHE INTERNAL "CMakeMM ${CMMM_TAG} is initialized.")
 endfunction()
 
 # Parse the argument in case a single one was provided and convert it to a list of arguments which can then be parsed idiomatically.
@@ -392,6 +392,9 @@ endfunction()
 
 # Module download
 macro(CMMM_INCLUDE_MODULE)
+  if(${CMAKE_VERSION} VERSION_LESS "3.5")
+    include(CMakeParseArguments)
+  endif()
   cmake_parse_arguments(ARG "" "NAME;URL;EXPECTED_HASH;DESCRIPTION;VERSION;RETRIES" "" "${ARGN}")
   get_property(CMMM_DEFAULT_COLOR GLOBAL PROPERTY CMMM_DEFAULT_COLOR)
   get_property(CMMM_FATAL_ERROR_COLOR GLOBAL PROPERTY CMMM_FATAL_ERROR_COLOR)
