@@ -89,13 +89,6 @@ function(cmmm)
     set(CMMM_RESET_COLOR "[0m")
   endif()
 
-  # Unlock file
-  function(unlock)
-    if(NOT CMAKE_VERSION VERSION_LESS 3.2)
-      file(LOCK "${CMMM_DESTINATION}/CMakeMM.cmake.lock" RELEASE)
-    endif()
-  endfunction()
-
   if(NOT DEFINED CMMM_VERSION OR CMMM_VERSION STREQUAL "latest")
     set(CMMM_URL "https://cmake-tools.github.io/cmmm/_static")
     set(CMMM_TAG "${CMMM_VERSION}")
@@ -108,6 +101,15 @@ function(cmmm)
     set(CMMM_DESTINATION "${CMAKE_BINARY_DIR}/cmmm")
   endif()
   get_filename_component(CMMM_DESTINATION "${CMMM_DESTINATION}" ABSOLUTE BASE_DIR "${CMAKE_BINARY_DIR}")
+  file(MAKE_DIRECTORY "${CMMM_DESTINATION}")
+  message(STATUS "rrrr ${CMMM_DESTINATION}")
+
+  # Unlock file
+  function(unlock)
+    if(NOT CMAKE_VERSION VERSION_LESS 3.2)
+      file(LOCK "${CMMM_DESTINATION}/CMakeMM.cmake.lock" RELEASE)
+    endif()
+  endfunction()
 
   if(DEFINED CMMM_INACTIVITY_TIMEOUT)
     set(CMMM_INACTIVITY_TIMEOUT_COMMAND "INACTIVITY_TIMEOUT;${CMMM_INACTIVITY_TIMEOUT}")
