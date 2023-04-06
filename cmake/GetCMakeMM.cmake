@@ -89,7 +89,7 @@ function(cmmm)
     set(CMMM_RESET_COLOR "[0m")
   endif()
 
-  message(FATAL_ERROR "${Esc}${CMMM_FATAL_ERROR_COLOR}[ CMMM ] TLS_VERIFY \n must have value ON or OFF.${Esc}${CMMM_RESET_COLOR}")
+  message(FATAL_ERROR "${Esc}${CMMM_FATAL_ERROR_COLOR}[ CMMM ] TLS_VERIFY fffffffffffffffffffffff ffffffffffff fffffffff fffffffffffffffffffffffffff must have value ON or OFF.${Esc}${CMMM_RESET_COLOR}")
 
   if(NOT DEFINED CMMM_VERSION OR CMMM_VERSION STREQUAL "latest")
     set(CMMM_URL "https://cmake-tools.github.io/cmmm/_static")
