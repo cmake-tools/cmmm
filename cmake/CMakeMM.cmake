@@ -61,6 +61,7 @@ endfunction()
 function(cmmm_check_updates)
   cmake_parse_arguments(CMMM "NO_CHANGELOG" "DESTINATION;VERSION" "" "${ARGN}")
 
+  get_filename_component(CMMM_DESTINATION "${CMMM_DESTINATION}" ABSOLUTE BASE_DIR "${CMAKE_BINARY_DIR}")
   if(NOT ${CMMM_NO_CHANGELOG} AND NOT ${CMMM_VERSION} STREQUAL "latest")
     set(CMMM_CHANGELOG_FILE "${CMMM_DESTINATION}/Changelog.cmake")
 
