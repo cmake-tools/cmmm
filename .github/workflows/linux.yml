@@ -32,7 +32,7 @@ jobs:
         path: .github/workflows
 
     - name: ⬇️ Install ca-certificates
-      run: sudo apt-get update ; sudo apt-get install --no-install-recommends -y ca-certificates libssl-dev
+      run: sudo apt-get update ; sudo apt-get install --no-install-recommends -y ca-certificates libssl-dev ; sudo update-ca-certificates
 
     - name: ⬇️ Setup CMake
       uses: lukka/get-cmake@latest
