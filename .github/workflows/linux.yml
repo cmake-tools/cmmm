@@ -52,7 +52,7 @@ jobs:
     - name: 🔧 Generate with v3.${{ matrix.cmake_version }}
       if: ${{ matrix.cmake_version >= 17 }}
       run: cmake -S ${{ env.CMAKE_SOURCE_PREFIX }} -B ${{ env.CMAKE_BINARY_PREFIX }} -G "Ninja Multi-Config" -Werror=dev -Werror=deprecated
-      
+
     - name: 🧪 Test
       run: ctest -C ${{ env.CMAKE_BUILD_TYPE }} --output-on-failure
       working-directory: ${{ env.CMAKE_BINARY_PREFIX }}
