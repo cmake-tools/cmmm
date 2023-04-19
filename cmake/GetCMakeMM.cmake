@@ -94,7 +94,7 @@ function(cmmm)
 
   if(NOT DEFINED CMMM_VERSION OR CMMM_VERSION STREQUAL "latest")
     set(CMMM_URL "https://cmake-tools.github.io/cmmm/_static")
-    set(CMMM_TAG "${CMMM_VERSION}")
+    set(CMMM_TAG "latest")
   else()
     set(CMMM_URL "https://github.com/cmake-tools/cmmm/releases/download")
     set(CMMM_TAG "v${CMMM_VERSION}")
