@@ -1,9 +1,6 @@
-include(GetCMakeMM)
 
-cmmm(VERSION 0 TIMEOUT 30 INACTIVITY_TIMEOUT 30 TLS_VERIFY OFF RETRIES 2)
 
-cmmm_modules_list(URI "gh:cmake-tools/cmmm.test" FILEPATH "/ModulesList.cmake" RETRIES 5)
-
-cmmm_modules_list(URI "gl:cmake-tools/cmmm.test" FILEPATH "/ModulesList.cmake" DESTINATION "${CMAKE_BINARY_DIR}/moduleslist/gitlab/" RETRIES 5)
-
-cmmm_modules_list(URI "bb:cmake-tools/cmmm.test" FILEPATH "/ModulesList.cmake" DESTINATION "${CMAKE_BINARY_DIR}/moduleslist/bitbucket/" RETRIES 5)
+add_test(NAME download_cmmm COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/download_cmmm.cmake)
+add_test(NAME module_list_bitbucket COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/module_list_bitbucket.cmake)
+add_test(NAME module_list_github COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/module_list_github.cmake)
+add_test(NAME module_list_gitlab COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/module_list_gitlab.cmake)
