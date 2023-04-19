@@ -8,6 +8,7 @@ option(BUILD_DOCS "Build the docs" ON)
 option(BUILD_TESTS "Build the tests" ON)
 
 if(BUILD_TESTS)
+  include(CTest)
   add_subdirectory(tests)
 endif()
 

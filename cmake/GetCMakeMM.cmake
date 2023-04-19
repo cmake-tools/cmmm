@@ -21,16 +21,10 @@ unset(GETCMMM_FILE_VERSION)
 #  :type CLICOLOR_FORCE: int
 #  :envvar CLICOLOR: Disable ANSI escape code colors. https://bixense.com/clicolors/
 #  :type CLICOLOR: int
-#  :envvar CMMM_DEFAULT_COLOR: Default color (`[0;35m`).
-#  :type CMMM_DEFAULT_COLOR: ANSI escape color sequence (without ESC character)
-#  :envvar CMMM_FATAL_ERROR_COLOR: Fatal error color (`[1;31m`).
-#  :type CMMM_FATAL_ERROR_COLOR: ANSI escape color sequence (without ESC character)
-#  :envvar CMMM_ERROR_COLOR: Error color (`[0;31m`).
-#  :type CMMM_ERROR_COLOR: ANSI escape color sequence (without ESC character)
-#  :envvar CMMM_WARN_COLOR: Warn color (`[0;33m`).
-#  :type CMMM_WARN_COLOR: ANSI escape color sequence (without ESC character)
-#  :envvar CMMM_INFO_COLOR: Info color (`[0;32m`).
-#  :type CMMM_INFO_COLOR: ANSI escape color sequence (without ESC character)
+#  :envvar CMMM_COLORS: Default colors.
+#  :type CMMM_COLORS: LS_COLORS syntax (default=0;35:fatal_error=1;31:error=0;31:warn=0;33:info=0;32)
+#  :var CMMM_COLORS: Default colors.
+#  :type CMMM_COLORS: LS_COLORS syntax (default=0;35:fatal_error=1;31:error=0;31:warn=0;33:info=0;32)
 #  :param NO_COLOR: Disable colors.
 #  :param SHOW_PROGRESS: Print progress information as status messages until the operation is complete.
 #  :param NO_CHANGELOG: Disable changelog download.
@@ -67,22 +61,34 @@ function(cmmm)
   endif()
 
   if(NOT CMMM_NO_COLOR)
+    set(CMMM_DEFAULT_COLORS "default=0;35:fatal_error=1;31:error=0;31:warn=0;33:info=0;32")
+    if(DEFINED ENV{CMMM_COLORS})
+      string(REPLACE ";" "." CMMM_COLORS "$ENV{CMMM_COLORS}")
+      string(REPLACE ":" ";" CMMM_COLORS "${CMMM_COLORS}")
+      string(REPLACE "=" ";" CMMM_COLORS "${CMMM_COLORS}")
+    elseif(DEFINED CMMM_COLORS)
+      string(REPLACE ";" "." CMMM_COLORS "${CMMM_COLORS}")
+      string(REPLACE ":" ";" CMMM_COLORS "${CMMM_COLORS}")
+      string(REPLACE "=" ";" CMMM_COLORS "${CMMM_COLORS}")
+    endif()
+    string(REPLACE ";" "." CMMM_DEFAULT_COLORS "${CMMM_DEFAULT_COLORS}")
+    string(REPLACE ":" ";" CMMM_DEFAULT_COLORS "${CMMM_DEFAULT_COLORS}")
+    string(REPLACE "=" ";" CMMM_DEFAULT_COLORS "${CMMM_DEFAULT_COLORS}")
+
+    set(COLOR_TYPES "default;fatal_error;error;warn;info")
+    cmake_parse_arguments(GIVEN "" "${COLOR_TYPES}" "" "${CMMM_COLORS}")
+    cmake_parse_arguments(DEFAULT "" "${COLOR_TYPES}" "" "${CMMM_DEFAULT_COLORS}")
+    foreach(COLOR_TYPE IN LISTS COLOR_TYPES)
+      string(TOUPPER "CMMM_${COLOR_TYPE}_COLOR" CMMM_TYPE_COLOR)
+      if(DEFINED GIVEN_${COLOR_TYPE})
+        string(REPLACE "." ";" GIVEN_${COLOR_TYPE} "${GIVEN_${COLOR_TYPE}}")
+        set(${CMMM_TYPE_COLOR} "[${GIVEN_${COLOR_TYPE}}m")
+      else()
+        string(REPLACE "." ";" DEFAULT_${COLOR_TYPE} "${DEFAULT_${COLOR_TYPE}}")
+        set(${CMMM_TYPE_COLOR} "[${DEFAULT_${COLOR_TYPE}}m")
+      endif()
+    endforeach()
     string(ASCII 27 CMMM_ESC)
-    if(NOT DEFINED CMMM_DEFAULT_COLOR)
-      set(CMMM_DEFAULT_COLOR "[0;35m")
-    endif()
-    if(NOT DEFINED CMMM_FATAL_ERROR_COLOR)
-      set(CMMM_FATAL_ERROR_COLOR "[1;31m")
-    endif()
-    if(NOT DEFINED CMMM_ERROR_COLOR)
-      set(CMMM_ERROR_COLOR "[0;31m")
-    endif()
-    if(NOT DEFINED CMMM_WARN_COLOR)
-      set(CMMM_WARN_COLOR "[0;33m")
-    endif()
-    if(NOT DEFINED CMMM_INFO_COLOR)
-      set(CMMM_INFO_COLOR "[0;32m")
-    endif()
     set(CMMM_RESET_COLOR "[0m")
   endif()
 
@@ -99,6 +105,8 @@ function(cmmm)
   endif()
   get_filename_component(CMMM_DESTINATION "${CMMM_DESTINATION}" ABSOLUTE BASE_DIR "${CMAKE_BINARY_DIR}")
   file(MAKE_DIRECTORY "${CMMM_DESTINATION}")
+
+  set(ARGN "${ARGN};TAG;${CMMM_TAG};DESTINATION;${CMMM_DESTINATION}")
 
   # Unlock file
   function(unlock)
@@ -130,6 +138,7 @@ function(cmmm)
 
   if(NOT DEFINED CMMM_RETRIES)
     set(CMMM_RETRIES "0")
+    set(ARGN "${ARGN};RETRIES;${CMMM_RETRIES}")
   endif()
 
   if(EXISTS "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
@@ -169,7 +178,7 @@ function(cmmm)
   endwhile()
 
   include("${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
-  cmmm_entry("${ARGN};DESTINATION;${CMMM_DESTINATION};TAG;${CMMM_TAG};RETRIES;${CMMM_RETRIES}")
+  cmmm_entry(${ARGN})
   unlock()
 
 endfunction()
