@@ -31,9 +31,6 @@ jobs:
       with:
         path: .github/workflows
 
-    - name: ⬇️ Install ca-certificates
-      run: sudo apt-get update ; sudo apt-get install --no-install-recommends -y ca-certificates libssl-dev libnss3 ; sudo update-ca-certificates
-
     - name: ⬇️ Setup CMake
       uses: lukka/get-cmake@latest
       with:
