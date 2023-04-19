@@ -326,32 +326,26 @@ function(cmmm_define_module NAME)
     message(FATAL_ERROR "LOCAL and REMOTE can't be used simultaneously as cmmm_define_module argument.")
   endif()
 
-  set(CMMM_COMMAND "")
-  set(CMMM_COMMAND "cmmm_include_module(NAME [[${NAME}]]")
+  set(CMMM_COMMAND "NAME [[${name}]];")
   if(DEFINED ARG_REMOTE)
-    set(CMMM_COMMAND "${COMMAND} URL [[${ARG_REMOTE}]]")
+    set(CMMM_COMMAND "URL;[[${ARG_REMOTE}]]")
   else()
-    set(CMMM_COMMAND "${COMMAND} URL [[${CMMM_URL}/${ARG_LOCAL}]]")
+    set(CMMM_COMMAND "URL;[[${CMMM_URL}/${ARG_LOCAL}]]")
   endif()
   set(COMMAND "")
-  list(APPEND COMMAND EXPECTED_HASH DESCRIPTION VERSION)
+  list(APPEND COMMAND EXPECTED_HASH DESCRIPTION VERSION RETRIES)
   foreach(ARG IN LISTS COMMAND)
     if(DEFINED ARG_${ARG} AND NOT "${ARG_${ARG}}" STREQUAL "")
-      set(CMMM_COMMAND "${ARG};${ARG_${ARG}}")
+      set(CMMM_COMMAND ";${ARG};${ARG_${ARG}}")
     endif()
   endforeach()
 
-  if(ARG_EXPECTED_HASH)
-    set(EXPECTED_HASH_COMMAND "EXPECTED_HASH;${ARG_EXPECTED_HASH}")
-  endif()
+  set(CMMM_DESTINATION_PREMODULES "${CMAKE_CURRENT_LIST_DIR}/premodules")
+  get_filename_component(CMMM_DESTINATION_PREMODULES "${CMMM_DESTINATION_PREMODULES}" ABSOLUTE BASE_DIR "${CMAKE_CURRENT_BINARY_DIR}")
+  file(MAKE_DIRECTORY "${CMMM_DESTINATION_PREMODULES}")
 
-  if(ARG_REMOTE)
-    file(WRITE "${CMMM_DESTINATION_PREMODULES}/${NAME}.cmake" "cmmm_include_module(NAME [[${NAME}]] URL [[${ARG_REMOTE}]]
-                                                              ${EXPECTED_HASH_COMMAND} DESCRIPTION [[${ARG_DESCRIPTION}]] VERSION [[${ARG_VERSION}]] RETRIES [[${CMMM_RETRIES}]])")
-  else()
-    file(WRITE "${CMMM_DESTINATION_PREMODULES}/${NAME}.cmake" "cmmm_include_module(NAME [[${NAME}]] URL [[${CMMM_URL}/${ARG_LOCAL}]]
-                                                              ${EXPECTED_HASH_COMMAND} DESCRIPTION  [[${ARG_DESCRIPTION}]] VERSION [[${ARG_VERSION}]] RETRIES [[${CMMM_RETRIES}]])")
-  endif()
+
+  file(WRITE "${CMMM_DESTINATION_PREMODULES}/${NAME}.cmake" "cmmm_include_module(${CMMM_COMMAND})")
 endfunction()
 
 # Module download
@@ -395,10 +389,6 @@ macro(CMMM_INCLUDE_MODULE)
   if(CMMM_SHOW_PROGRESS)
     set(CMMM_SHOW_PROGRESS_COMMAND "SHOW_PROGRESS")
   endif()
-
-  set(CMMM_DESTINATION_PREMODULES "${CMAKE_CURRENT_LIST_DIR}/premodules")
-  get_filename_component(CMMM_DESTINATION_PREMODULES "${CMMM_DESTINATION_PREMODULES}" ABSOLUTE BASE_DIR "${CMAKE_CURRENT_BINARY_DIR}")
-  file(MAKE_DIRECTORY "${CMMM_DESTINATION_PREMODULES}")
 
   set(CMMM_DESTINATION_MODULES "${CMAKE_CURRENT_LIST_DIR}/modules")
   get_filename_component(CMMM_DESTINATION_MODULES "${CMMM_DESTINATION_MODULES}" ABSOLUTE BASE_DIR "${CMAKE_CURRENT_BINARY_DIR}")
