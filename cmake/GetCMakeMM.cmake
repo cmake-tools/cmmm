@@ -138,8 +138,8 @@ function(cmmm)
 
   if(NOT DEFINED CMMM_RETRIES)
     set(CMMM_RETRIES "0")
-    set(ARGN "${ARGN};RETRIES;${CMMM_RETRIES}")
   endif()
+  set(ARGN "${ARGN};RETRIES;${CMMM_RETRIES}")
 
   if(EXISTS "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake")
     file(SHA256 "${CMMM_DESTINATION}/CMakeMM-${CMMM_TAG}.cmake" CMakeMMSHA256)
