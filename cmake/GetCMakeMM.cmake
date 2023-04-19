@@ -15,25 +15,22 @@ set(CURRENT_GETCMMM_FILE_VERSION "${GETCMMM_FILE_VERSION}" CACHE INTERNAL "GetCM
 unset(GETCMMM_FILE_VERSION)
 
 #[[[
-#  Download and Load CMakeMM
+#  Download and load CMakeMM
 #
-#  Environment variables:
-#
-#  CLICOLOR_FORCE to force ANSI escape code colors. https://bixense.com/clicolors/
-#
-#  CLICOLOR to disable ANSI escape code colors. https://bixense.com/clicolors/
-#
-#  CMMM_DEFAULT_COLOR to set default color (`[0;35m`).
-#
-#  CMMM_FATAL_ERROR_COLOR to set fatal error color (`[1;31m`).
-#
-#  CMMM_ERROR_COLOR to set error color (`[0;31m`).
-#
-#  CMMM_WARN_COLOR to set warn color (`[0;33m`).
-#
-#  CMMM_INFO_COLOR to set info color (`[0;32m`).
-#
-#
+#  :envvar CLICOLOR_FORCE: Force ANSI escape code colors. https://bixense.com/clicolors/
+#  :type CLICOLOR_FORCE: int
+#  :envvar CLICOLOR: Disable ANSI escape code colors. https://bixense.com/clicolors/
+#  :type CLICOLOR: int
+#  :envvar CMMM_DEFAULT_COLOR: Default color (`[0;35m`).
+#  :type CMMM_DEFAULT_COLOR: ANSI escape color sequence (without ESC character)
+#  :envvar CMMM_FATAL_ERROR_COLOR: Fatal error color (`[1;31m`).
+#  :type CMMM_FATAL_ERROR_COLOR: ANSI escape color sequence (without ESC character)
+#  :envvar CMMM_ERROR_COLOR: Error color (`[0;31m`).
+#  :type CMMM_ERROR_COLOR: ANSI escape color sequence (without ESC character)
+#  :envvar CMMM_WARN_COLOR: Warn color (`[0;33m`).
+#  :type CMMM_WARN_COLOR: ANSI escape color sequence (without ESC character)
+#  :envvar CMMM_INFO_COLOR: Info color (`[0;32m`).
+#  :type CMMM_INFO_COLOR: ANSI escape color sequence (without ESC character)
 #  :param NO_COLOR: Disable colors.
 #  :param SHOW_PROGRESS: Print progress information as status messages until the operation is complete.
 #  :param NO_CHANGELOG: Disable changelog download.
@@ -111,11 +108,15 @@ function(cmmm)
   endfunction()
 
   set(CMMM_COMMAND "")
-  set(COMMAND "")
-  list(APPEND COMMAND INACTIVITY_TIMEOUT TIMEOUT TLS_VERIFY TLS_CAINFO)
-  foreach(X IN LISTS COMMAND)
-    if(DEFINED CMMM_${X})
-      set(CMMM_COMMAND "${X};${CMMM_${X}}")
+  set(ARGUMENTS "")
+  list(APPEND ARGUMENTS INACTIVITY_TIMEOUT TIMEOUT TLS_VERIFY TLS_CAINFO)
+  foreach(ARG IN LISTS ARGUMENTS)
+    if(DEFINED CMMM_${ARG})
+      if(NOT "${CMMM_COMMAND}" STREQUAL "")
+        set(CMMM_COMMAND "${CMMM_COMMAND};${ARG};${CMMM_${ARG}}")
+      else()
+        set(CMMM_COMMAND "${ARG};${CMMM_${ARG}}")
+      endif()
     endif()
   endforeach()
 
