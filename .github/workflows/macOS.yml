@@ -53,3 +53,4 @@ jobs:
       
     - name: 🧪 Test
       run: ctest --test-dir ${{ env.CMAKE_BINARY_PREFIX }} -C ${{ env.CMAKE_BUILD_TYPE }} --output-on-failure
+      working-directory: ${{ env.CMAKE_BINARY_PREFIX }}
