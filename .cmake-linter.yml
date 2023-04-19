@@ -1,6 +1,6 @@
 ---
 format:
-  line_width: 250
+  line_width: 280
 lint:
   disabled_codes: [C0112]
   function_pattern: '[0-9a-z_]+'
