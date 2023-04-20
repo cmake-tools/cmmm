@@ -167,7 +167,7 @@ function(cmmm_modules_list)
     get_property(CMMM_DESTINATION GLOBAL PROPERTY CMMM_DESTINATION)
     # This can happen when fetching content
     if("${CMMM_DESTINATION}" STREQUAL "")
-      set(CMMM_DESTINATION "${CMAKE_BINARY_DIR}/cmmm")
+      set(CMMM_DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/cmmm")
     endif()
     string(FIND ${CMMM_DESTINATION} "/" CMMM_FOUND REVERSE)
     string(LENGTH ${CMMM_DESTINATION} CMMM_SIZE)
@@ -184,7 +184,8 @@ function(cmmm_modules_list)
       string(SUBSTRING ${CMMM_DESTINATION} "0" "${CMMM_SIZE}" CMMM_DESTINATION)
     endif()
   endif()
-  get_filename_component(CMMM_DESTINATION "${CMMM_DESTINATION}" ABSOLUTE BASE_DIR "${CMAKE_BINARY_DIR}")
+
+  get_filename_component(CMMM_DESTINATION "${CMMM_DESTINATION}" ABSOLUTE BASE_DIR "${CMAKE_CURRENT_BINARY_DIR}")
 
   if(NOT DEFINED CMMM_INACTIVITY_TIMEOUT)
     get_property(CMMM_INACTIVITY_TIMEOUT GLOBAL PROPERTY CMMM_INACTIVITY_TIMEOUT)
