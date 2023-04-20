@@ -332,7 +332,7 @@ function(cmmm_define_module NAME)
   endif()
 
   set(CMMM_COMMAND "")
-  list(APPEND CMMM_COMMAND "NAME" "[[${name}]]")
+  list(APPEND CMMM_COMMAND "NAME" "[[${NAME}]]")
   if(DEFINED ARG_REMOTE)
     list(APPEND CMMM_COMMAND "URL" "[[${ARG_REMOTE}]]")
   else()
@@ -350,7 +350,7 @@ function(cmmm_define_module NAME)
     endif()
   endforeach()
 
-  set(CMMM_DESTINATION_PREMODULES "${CMAKE_CURRENT_LIST_DIR}/premodules")
+  set(CMMM_DESTINATION_PREMODULES "${CMAKE_CURRENT_BINARY_DIR}/premodules")
   get_filename_component(CMMM_DESTINATION_PREMODULES "${CMMM_DESTINATION_PREMODULES}" ABSOLUTE BASE_DIR "${CMAKE_CURRENT_BINARY_DIR}")
   file(MAKE_DIRECTORY "${CMMM_DESTINATION_PREMODULES}")
 
