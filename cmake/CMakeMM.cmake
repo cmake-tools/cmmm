@@ -166,7 +166,7 @@ function(cmmm_modules_list)
   if(NOT DEFINED CMMM_DESTINATION)
     get_property(CMMM_DESTINATION GLOBAL PROPERTY CMMM_DESTINATION)
     # This can happen when fetching content
-    if(CMMM_DESTINATION STREQUAL "")
+    if("${CMMM_DESTINATION}" STREQUAL "")
       set(CMMM_DESTINATION "${CMAKE_BINARY_DIR}/cmmm")
     endif()
     string(FIND ${CMMM_DESTINATION} "/" CMMM_FOUND REVERSE)
