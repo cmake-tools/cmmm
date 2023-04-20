@@ -15,3 +15,22 @@ CMakeMM
 [![windows](https://github.com/cmake-tools/cmmm/actions/workflows/windows.yml/badge.svg)](https://github.com/cmake-tools/cmmm/actions/workflows/windows.yml)
 
 </h4>
+
+## Documentation ##
+
+<h1 align="center">
+  <a href="https://cmake-tools.github.io/cmmm/">
+
+  ```markdown
+  🌍 Online
+  ```
+
+  </a>
+  <a href="https://cmake-tools.github.io/cmmm/">
+
+  ```markdown
+  📖 PDF
+  ```
+
+  </a>
+</h1>
