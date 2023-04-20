@@ -9,6 +9,7 @@ CMakeMM
 
 <h4 align="center">
 
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/cmake-tools/cmmm/main.svg)](https://results.pre-commit.ci/latest/github/cmake-tools/cmmm/main)
 [![docs](https://github.com/cmake-tools/cmmm/actions/workflows/docs.yml/badge.svg)](https://github.com/cmake-tools/cmmm/actions/workflows/docs.yml)
 [![linux](https://github.com/cmake-tools/cmmm/actions/workflows/linux.yml/badge.svg)](https://github.com/cmake-tools/cmmm/actions/workflows/linux.yml)
 [![macOS](https://github.com/cmake-tools/cmmm/actions/workflows/macOS.yml/badge.svg)](https://github.com/cmake-tools/cmmm/actions/workflows/macOS.yml)
