@@ -1,7 +1,7 @@
 add_test(NAME download COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/download.cmake)
 add_test(NAME download_default COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/download_default.cmake)
 add_test(NAME download_latest COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/download_latest.cmake)
-add_test(NAME download_fetchcontent.cmake COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/download_fetchcontent.cmake)
+add_test(NAME download_fetchcontent COMMAND ${CMAKE_COMMAND} ${CMAKE_CURRENT_SOURCE_DIR}/FetchContent/)
 add_test(NAME module_list_bitbucket COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/module_list_bitbucket.cmake)
 add_test(NAME module_list_github COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/module_list_github.cmake)
 add_test(NAME module_list_gitlab COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/module_list_gitlab.cmake)
