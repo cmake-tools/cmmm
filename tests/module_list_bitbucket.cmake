@@ -6,4 +6,6 @@ if(NOT "${CMAKE_VERSION}" VERSION_LESS 3.2)
 
   cmmm_modules_list(URI "bb:cmake-tools/cmmm.test")
 
+  message(STATUS "CMAKE_MODULE_PATH : ${CMAKE_MODULE_PATH}")
+
 endif()

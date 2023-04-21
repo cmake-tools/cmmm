@@ -13,3 +13,5 @@ else()
   cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
   project(FetchContentCMMM LANGUAGES NONE)
 endif()
+
+message(STATUS "CMAKE_MODULE_PATH : ${CMAKE_MODULE_PATH}")

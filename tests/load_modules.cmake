@@ -13,3 +13,5 @@ include(Example2)
 if(NOT DEFINED Example2)
   message(FATAL_ERROR "Example2 is not loaded :(")
 endif()
+
+message(STATUS "CMAKE_MODULE_PATH : ${CMAKE_MODULE_PATH}")
