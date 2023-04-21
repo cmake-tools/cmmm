@@ -5,3 +5,4 @@ add_test(NAME download_fetchcontent COMMAND ${CMAKE_COMMAND} ${CMAKE_CURRENT_SOU
 add_test(NAME module_list_bitbucket COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/module_list_bitbucket.cmake)
 add_test(NAME module_list_github COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/module_list_github.cmake)
 add_test(NAME module_list_gitlab COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/module_list_gitlab.cmake)
+add_test(NAME two_module_lists COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/two_module_lists.cmake)
