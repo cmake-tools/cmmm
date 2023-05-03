@@ -12,6 +12,6 @@ if(NOT "${MODULE_NAME}" STREQUAL "RootDirectory")
 endif()
 
 include(RemoteURLRootDirectory)
-if(NOT "${MODULE_NAME}" STREQUAL "GithubRemote")
+if(NOT "${MODULE_NAME}" STREQUAL "BitbucketRemote")
   message(FATAL_ERROR "RemoteURLRootDirectory is not loaded :(")
 endif()
