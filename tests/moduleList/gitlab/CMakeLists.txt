@@ -1,0 +1,3 @@
+set(BASENAME "moduleList/gitlab")
+add_test(NAME ${BASENAME}/default COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/default.cmake)
+add_test(NAME ${BASENAME}/load_module COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/load_module.cmake)
