@@ -1,6 +1,6 @@
 include("${CMMM_DIRECTORY}/GetCMakeMM.cmake")
 
-cmmm(VERSION latest)
+cmmm(VERSION latest TLS_VERIFY OFF)
 
 cmmm_modules_list(URI "gl:cmake-tools/cmmm.test")
 
