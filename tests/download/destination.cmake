@@ -1,0 +1,3 @@
+include("${CMMM_DIRECTORY}/GetCMakeMM.cmake")
+
+cmmm(VERSION latest DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/MyCMMM")
