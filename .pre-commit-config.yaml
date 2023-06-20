@@ -54,7 +54,7 @@ repos:
     args: [--whitespaces-count, '2']
 
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.2.4
+  rev: v2.2.5
   hooks:
   - id: codespell
 
@@ -66,13 +66,13 @@ repos:
     args: [--mapping, '2', --sequence, '2', --offset, '0', --width, '250']
 
 - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-  rev: 2.7.1
+  rev: 2.7.2
   hooks:
   - id: editorconfig-checker
     name: check .editorconfig rules
 
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.2.4
+  rev: v2.2.5
   hooks:
   - id: codespell
 
@@ -85,6 +85,6 @@ repos:
     args: [--config=.cmake-linter.yml]
 
 - repo: https://github.com/sirosen/check-jsonschema
-  rev: 0.23.1
+  rev: 0.23.2
   hooks:
   - id: check-github-workflows
