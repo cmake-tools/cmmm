@@ -29,6 +29,7 @@ jobs:
         init-shell: bash
         cache-environment: true
         post-cleanup: 'all'
+        environment-name: docs
     - name: Install python packages
       run: pip install -U CMinx myst-parser
     - name: ⬇️ Setup CMake
