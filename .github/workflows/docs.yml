@@ -22,6 +22,13 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Install/Configure mamba
+      uses: mamba-org/setup-micromamba@v1
+      with:
+        environment-file: environment.yml
+        init-shell: bash
+        cache-environment: true
+        post-cleanup: 'all'
     - name: Install python packages
       run: pip install -U sphinx CMinx myst-parser sphinx_rtd_theme
     - name: ⬇️ Setup CMake
