@@ -30,7 +30,7 @@ jobs:
         cache-environment: true
         post-cleanup: 'all'
     - name: Install python packages
-      run: pip install -U sphinx CMinx myst-parser sphinx_rtd_theme
+      run: pip install -U CMinx myst-parser
     - name: ⬇️ Setup CMake
       uses: lukka/get-cmake@latest
       with:
