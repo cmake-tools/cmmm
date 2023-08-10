@@ -25,7 +25,7 @@ jobs:
     - name: Install/Configure mamba
       uses: mamba-org/setup-micromamba@v1
       with:
-        environment-file: environment.yml
+        environment-file: ${{ github.workspace }}/.github/workflows/mamba/docs.yml
         init-shell: bash
         cache-environment: true
         post-cleanup: 'all'
