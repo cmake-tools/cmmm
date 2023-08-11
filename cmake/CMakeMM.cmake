@@ -76,7 +76,7 @@ function(cmmm_check_updates)
         message(STATUS "${CMMM_ESC}${CMMM_WARN_COLOR}[ CMMM ] Retrying (${CMMM_RETRIES_DONE}/${CMMM_RETRIES}).${CMMM_ESC}${CMMM_RESET_COLOR}")
       endif()
 
-      file(DOWNLOAD "https://cmake-tools.github.io/cmmm/_static/latest/Changelog.cmake" "${CMMM_CHANGELOG_FILE}" ${CMMM_COMMAND} LOG CMMM_LOG STATUS CMAKECM_STATUS)
+      file(DOWNLOAD "https://cmake-tools.github.io/cmmm/latest/Changelog.cmake" "${CMMM_CHANGELOG_FILE}" ${CMMM_COMMAND} LOG CMMM_LOG STATUS CMAKECM_STATUS)
       list(GET CMAKECM_STATUS 0 CMAKECM_CODE)
       list(GET CMAKECM_STATUS 1 CMAKECM_MESSAGE)
       if(NOT "${CMAKECM_CODE}" STREQUAL "0")
