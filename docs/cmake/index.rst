@@ -9,4 +9,4 @@ Variables
 List of variables
 
 .. toctree::
-   :maxdepth: 1
+  :maxdepth: 1

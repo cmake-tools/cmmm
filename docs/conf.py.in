@@ -1,7 +1,7 @@
 import sys
-sys.path.insert(0, r'@conf_path@')
+sys.path.insert(0, r'@CONF_PATH@')
 
-project = '@project@'
+project = '@PROJECT_NAME@'
 copyright = '@PROJECT_COPYRIGHT@'
 author = '@PROJECT_AUTHOR@'
 release = '@PROJECT_VERSION@'
