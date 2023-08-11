@@ -28,10 +28,18 @@ jobs:
         environment-file: ${{ github.workspace }}/.github/workflows/mamba/docs.yml
         init-shell: bash
         cache-environment: true
-        post-cleanup: 'all'
+        post-cleanup: all
         environment-name: docs
     - name: Install python packages
       run: pip install -U sphinxcontrib-moderncmakedomain
+    - name: 🟨 Install TinyTeX
+      uses: r-lib/actions/setup-tinytex@v2
+      env:
+        TINYTEX_INSTALLER: TinyTeX-0
+    - name: 🟨 Install LaTeX packages
+      run: |
+        tlmgr install amsmath luatex85 hyperref polyglossia geometry cmap
+        tlmgr list --only-installed
     - name: ⬇️ Setup CMake
       uses: lukka/get-cmake@latest
       with:

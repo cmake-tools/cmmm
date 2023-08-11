@@ -6,7 +6,7 @@ copyright = '@PROJECT_COPYRIGHT@'
 author = '@PROJECT_AUTHOR@'
 release = '@PROJECT_VERSION@'
 #pygments_style = 'colors.CMakeTemplateStyle'
-
+latex_engine = 'lualatex'
 extensions = ['sphinxcontrib.moderncmakedomain']
 
 html_css_files = ['css/custom.css',]
