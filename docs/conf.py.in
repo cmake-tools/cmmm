@@ -9,7 +9,7 @@ release = '@PROJECT_VERSION@'
 latex_engine = 'lualatex'
 extensions = ['sphinxcontrib.moderncmakedomain']
 fontpkg = r""
-html_css_files = ['css/custom.css',]
+html_css_files = ['css/custom.css']
 
 templates_path = ['templates']
 exclude_patterns = []
