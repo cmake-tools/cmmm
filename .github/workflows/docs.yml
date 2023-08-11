@@ -39,9 +39,9 @@ jobs:
     - name: Run CMake
       run: cmake -S ${{ github.workspace }} -B ${{ github.workspace }}/build -G "Ninja Multi-Config" -Werror=dev -Werror=deprecated -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install
     - name: Generate docs
-      run: ninja docs-all
+      run: cmake --build ${{ github.workspace }}/build --target docs-all --config Build
     - name: Install docs
-      run: ninja install
+      run: cmake --install ${{ github.workspace }}/build --config Build
     - name: Setup Pages
       uses: actions/configure-pages@v3
     - name: Upload artifact
