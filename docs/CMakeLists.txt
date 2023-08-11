@@ -6,8 +6,6 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/conf.py.in" "${CMAKE_CURRENT_BINARY_
 file(COPY "${CMAKE_SOURCE_DIR}/cmake/Changelog.cmake" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/html/latest")
 file(COPY "${CMAKE_SOURCE_DIR}/cmake/CMakeMM.cmake" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/html/latest")
 
-message(STATUS "${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}")
-
 add_custom_target(docs-all ALL sphinx-build "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/html" -b html -c "${CMAKE_CURRENT_BINARY_DIR}" DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/conf.py"
         WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
         COMMENT "Generating doc using Sphinx")
