@@ -37,15 +37,17 @@ jobs:
       with:
         cmakeVersion: ^3
     - name: Run CMake
-      run: cmake -S ${{ github.workspace }} -B ${{ github.workspace }}/build -G "Ninja Multi-Config" -Werror=dev -Werror=deprecated -DBUILD_TESTS=OFF
+      run: cmake -S ${{ github.workspace }} -B ${{ github.workspace }}/build -G "Ninja Multi-Config" -Werror=dev -Werror=deprecated -DBUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install
     - name: Generate docs
-      run: sphinx-build ${{ github.workspace }}/docs/ ${{ github.workspace }}/docs/build -b html
+      run: ninja docs-all
+    - name: Install docs
+      run: ninja install
     - name: Setup Pages
       uses: actions/configure-pages@v3
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v2
       with:
-        path: ${{ github.workspace }}/docs/build
+        path: ${{ github.workspace }}/install/share/doc/html/
 
   deploy:
     environment:
