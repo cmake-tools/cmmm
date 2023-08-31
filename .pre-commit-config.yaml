@@ -46,7 +46,7 @@ repos:
     name: check for conflict markers and core.whitespace errors
 
 - repo: https://github.com/Lucas-C/pre-commit-hooks
-  rev: v1.5.3
+  rev: v1.5.4
   hooks:
   - id: remove-crlf
   - id: remove-tabs
@@ -85,6 +85,6 @@ repos:
     args: [--config=.cmake-linter.yml]
 
 - repo: https://github.com/sirosen/check-jsonschema
-  rev: 0.23.3
+  rev: 0.26.3
   hooks:
   - id: check-github-workflows
