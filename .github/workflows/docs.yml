@@ -40,13 +40,12 @@ jobs:
       run: |
         tlmgr install latex-bin latex-tools-dev amsmath luatex85 hyperref polyglossia geometry cmap amsfonts luatexbase
         tlmgr list --only-installed
-        ls /home/runner/micromamba/envs/docs
     - name: ⬇️ Setup CMake
       uses: lukka/get-cmake@latest
       with:
         cmakeVersion: ^3
     - name: Run CMake
-      run: cmake -S ${{ github.workspace }} -B ${{ github.workspace }}/build -G "Ninja Multi-Config" -Werror=dev -Werror=deprecated -DBUILD_TESTS=OFF -DCMAKE_PREFIX_PATH=${{ env.MAMBA_ROOT_PREFIX }}/envs/docs/ -DCMAKE_INSTALL_PREFIX=${{ github.workspace
+      run: cmake -D CMAKE_PROGRAM_PATH=${{ env.MAMBA_ROOT_PREFIX }}/envs/docs/bin -S ${{ github.workspace }} -B ${{ github.workspace }}/build -G "Ninja Multi-Config" -Werror=dev -Werror=deprecated -DBUILD_TESTS=OFF -DCMAKE_PREFIX_PATH=${{ env.MAMBA_ROOT_PREFIX }}/envs/docs/ -DCMAKE_INSTALL_PREFIX=${{ github.workspace
         }}/install
     - name: Generate docs
       run: cmake --build ${{ github.workspace }}/build --target docs-all --config Release
