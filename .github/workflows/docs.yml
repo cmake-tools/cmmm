@@ -40,6 +40,7 @@ jobs:
       run: |
         tlmgr install latex-bin latex-tools-dev amsmath luatex85 hyperref polyglossia geometry cmap amsfonts luatexbase
         tlmgr list --only-installed
+        ls /home/runner/micromamba/envs/docs
     - name: ⬇️ Setup CMake
       uses: lukka/get-cmake@latest
       with:
