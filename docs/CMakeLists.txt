@@ -5,12 +5,13 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/conf.py.in" "${CMAKE_CURRENT_BINARY_
 file(COPY "${CMAKE_SOURCE_DIR}/cmake/Changelog.cmake" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/html/latest")
 file(COPY "${CMAKE_SOURCE_DIR}/cmake/CMakeMM.cmake" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/html/latest")
 
-add_custom_target(docs-html sphinx-build "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/html" -b html -c "${CMAKE_CURRENT_BINARY_DIR}" DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/conf.py"
+find_program(SPHINX_BUILD NAMES sphinx-build HINTS ENV CONDA_PREFIX DOC "sphinx-build")
+
+add_custom_target(docs-html "${SPHINX_BUILD}" "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/html" -b html -c "${CMAKE_CURRENT_BINARY_DIR}" DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/conf.py"
         WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
         COMMENT "Generating doc using Sphinx (html).")
 install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/html" DESTINATION share/doc)
 
-find_program(SPHINX_BUILD NAMES sphinx-build HINTS ENV CONDA_PREFIX DOC "sphinx-build")
 find_package(LATEX COMPONENTS LUALATEX)
 if(LATEX_LUALATEX_FOUND)
   add_custom_target(docs-pdf "${SPHINX_BUILD}" "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/pdf" -b latex -c "${CMAKE_CURRENT_BINARY_DIR}"
