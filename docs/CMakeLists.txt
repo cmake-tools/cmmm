@@ -10,9 +10,10 @@ add_custom_target(docs-html sphinx-build "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_
         COMMENT "Generating doc using Sphinx (html).")
 install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/html" DESTINATION share/doc)
 
+find_program(SPHINX_BUILD NAMES sphinx-build HINTS ENV CONDA_PREFIX DOC "sphinx-build")
 find_package(LATEX COMPONENTS LUALATEX)
 if(LATEX_LUALATEX_FOUND)
-  add_custom_target(docs-pdf sphinx-build "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/pdf" -b latex -c "${CMAKE_CURRENT_BINARY_DIR}"
+  add_custom_target(docs-pdf "${SPHINX_BUILD}" "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/pdf" -b latex -c "${CMAKE_CURRENT_BINARY_DIR}"
           DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/conf.py"
           WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
           COMMENT "Generating doc using Sphinx (pdf).")
