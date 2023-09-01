@@ -8,7 +8,9 @@ release = '@PROJECT_VERSION@'
 #pygments_style = 'colors.CMakeTemplateStyle'
 latex_engine = 'lualatex'
 extensions = ['sphinxcontrib.moderncmakedomain']
-fontpkg = r""
+latex_elements = {
+    'fontpkg': '''''',
+ }
 html_css_files = ['css/custom.css']
 
 templates_path = ['templates']
