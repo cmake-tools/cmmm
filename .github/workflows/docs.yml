@@ -38,7 +38,7 @@ jobs:
         TINYTEX_INSTALLER: TinyTeX-0
     - name: 🟨 Install LaTeX packages
       run: |
-        tlmgr install latex-bin latex-tools-dev amsmath luatex85 hyperref polyglossia geometry cmap amsfonts luatexbase fncychap kvoptions float
+        tlmgr install latex-bin latex-tools-dev amsmath luatex85 hyperref polyglossia geometry cmap amsfonts luatexbase fncychap kvoptions float wrapfig
         tlmgr list --only-installed
     - name: ⬇️ Setup CMake
       uses: lukka/get-cmake@latest
