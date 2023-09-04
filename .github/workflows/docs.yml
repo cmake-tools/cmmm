@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Install/Configure mamba
       uses: mamba-org/setup-micromamba@v1
       with:
@@ -45,8 +45,8 @@ jobs:
       with:
         cmakeVersion: ^3
     - name: Run CMake
-      run: cmake -D CMAKE_PROGRAM_PATH=${{ env.MAMBA_ROOT_PREFIX }}/envs/docs/bin -S ${{ github.workspace }} -B ${{ github.workspace }}/build -G "Ninja Multi-Config" -Werror=dev -Werror=deprecated -DBUILD_TESTS=OFF -DCMAKE_PREFIX_PATH=${{ env.MAMBA_ROOT_PREFIX }}/envs/docs/ -DCMAKE_INSTALL_PREFIX=${{ github.workspace
-        }}/install
+      run: cmake -D CMAKE_PROGRAM_PATH=${{ env.MAMBA_ROOT_PREFIX }}/envs/docs/bin -S ${{ github.workspace }} -B ${{ github.workspace }}/build -G "Ninja Multi-Config" -Werror=dev -Werror=deprecated -DBUILD_TESTS=OFF -DCMAKE_PREFIX_PATH=${{ env.MAMBA_ROOT_PREFIX
+        }}/envs/docs/ -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install
     - name: Generate docs
       run: cmake --build ${{ github.workspace }}/build --target docs-all --config Release
     - name: Install docs
