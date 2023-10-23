@@ -1,5 +1,5 @@
-Welcome to CMMM's documentation!
-================================
+CMake Module Manager
+====================
 
 Table of Contents
 ^^^^^^^^^^^^^^^^^

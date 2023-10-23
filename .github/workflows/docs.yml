@@ -50,7 +50,9 @@ jobs:
     - name: Generate docs
       run: cmake --build ${{ github.workspace }}/build --target docs-all --config Release
     - name: Install docs
-      run: cmake --install ${{ github.workspace }}/build --config Release
+      run: |
+        cmake --install ${{ github.workspace }}/build --config Release
+        cmake -E copy ${{ github.workspace }}/install/share/doc/pdf/cmmm.pdf ${{ github.workspace }}/install/share/doc/html/pdf/cmmm.pdf
     - name: Setup Pages
       uses: actions/configure-pages@v3
     - name: Upload artifact

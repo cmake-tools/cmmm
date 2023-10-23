@@ -27,7 +27,7 @@ CMakeMM
   ```
 
   </a>
-  <a href="https://cmake-tools.github.io/cmmm/">
+  <a href="https://cmake-tools.github.io/cmmm/pdf/cmmm.pdf">
 
   ```markdown
   📖 PDF
