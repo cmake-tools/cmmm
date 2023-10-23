@@ -1,6 +1,89 @@
 # cmake-format: off
 # Copyright 2023 flagarde
 
+#[=======================================================================[.rst:
+cmmm
+----
+
+.. cmake:command:: cmmm
+
+Download and configure CMakeMM
+
+.. cmake:envvar:: CLICOLOR_FORCE
+
+  Force ANSI escape code colors.
+
+  .. note::
+    See https://bixense.com/clicolors/ for the values
+
+.. cmake:envvar:: CLICOLOR
+
+  Disable ANSI escape code colors.
+
+  .. note::
+    See https://bixense.com/clicolors/ for the values
+
+.. cmake:envvar:: CMMM_COLORS
+
+  Default colors.
+
+  .. note::
+
+    ``LS_COLORS`` syntax
+
+    (default=0;35:fatal_error=1;31:error=0;31:warn=0;33:info=0;32)
+
+.. cmake:variable:: CMMM_COLORS
+
+  Default colors.
+
+  .. note::
+
+    ``LS_COLORS`` syntax
+
+    (default=0;35:fatal_error=1;31:error=0;31:warn=0;33:info=0;32)
+
+.. cmake:variable:: NO_COLOR
+
+  Disable colors.
+
+..  cmake:variable:: SHOW_PROGRESS
+
+  Print progress information as status messages until the operation is complete.
+
+.. cmake:variable:: NO_CHANGELOG
+
+  Disable changelog download.
+
+.. cmake:variable:: VERSION
+
+  Version of CMakeMM to download (use one of the versions in https://github.com/cmake-tools/cmmm/releases or 'latest' for the last version. Only for testing !).
+
+.. cmake:variable:: DESTINATION
+
+  Where to install files.
+
+.. cmake:variable:: INACTIVITY_TIMEOUT
+
+  Terminate the operation after a period of inactivity.
+
+.. cmake:variable:: TIMEOUT
+
+  Terminate the operation after a given total time has elapsed.
+
+.. cmake:variable:: TLS_VERIFY
+
+  Specify whether to verify the server certificate for https:// URLs. The default is to not verify. If this option is not specified, the value of the CMAKE_TLS_VERIFY variable will be used instead.
+
+.. cmake:variable:: TLS_CAINFO
+
+  Specify a custom Certificate Authority file for https:// URLs. If this option is not specified, the value of the CMAKE_TLS_CAINFO variable will be used instead.
+
+.. cmake:variable RETRIES
+
+  Specify the number of retries if download fails.
+#]=======================================================================]
+
 if(${CMAKE_VERSION} VERSION_GREATER "3.9.6")
   include_guard(GLOBAL)
 endif()
@@ -14,35 +97,7 @@ endif()
 set(CURRENT_GETCMMM_FILE_VERSION "${GETCMMM_FILE_VERSION}" CACHE INTERNAL "GetCMakeMM version.")
 unset(GETCMMM_FILE_VERSION)
 
-#[[[
-#  Download and load CMakeMM
-#
-#  :envvar CLICOLOR_FORCE: Force ANSI escape code colors. https://bixense.com/clicolors/
-#  :type CLICOLOR_FORCE: int
-#  :envvar CLICOLOR: Disable ANSI escape code colors. https://bixense.com/clicolors/
-#  :type CLICOLOR: int
-#  :envvar CMMM_COLORS: Default colors.
-#  :type CMMM_COLORS: LS_COLORS syntax (default=0;35:fatal_error=1;31:error=0;31:warn=0;33:info=0;32)
-#  :var CMMM_COLORS: Default colors.
-#  :type CMMM_COLORS: LS_COLORS syntax (default=0;35:fatal_error=1;31:error=0;31:warn=0;33:info=0;32)
-#  :param NO_COLOR: Disable colors.
-#  :param SHOW_PROGRESS: Print progress information as status messages until the operation is complete.
-#  :param NO_CHANGELOG: Disable changelog download.
-#  :keyword VERSION: Version of CMakeMM to download (use one of the versions in https://github.com/cmake-tools/cmmm/releases or 'latest' for the last version. Only for testing !).
-#  :type VERSION: string
-#  :keyword DESTINATION: Where to install files.
-#  :type DESTINATION: path
-#  :keyword INACTIVITY_TIMEOUT: Terminate the operation after a period of inactivity.
-#  :type INACTIVITY_TIMEOUT: seconds
-#  :keyword TIMEOUT: Terminate the operation after a given total time has elapsed.
-#  :type TIMEOUT: seconds
-#  :keyword TLS_VERIFY: Specify whether to verify the server certificate for https:// URLs. The default is to not verify. If this option is not specified, the value of the CMAKE_TLS_VERIFY variable will be used instead.
-#  :type TLS_VERIFY: ON/OFF
-#  :keyword TLS_CAINFO: Specify a custom Certificate Authority file for https:// URLs. If this option is not specified, the value of the CMAKE_TLS_CAINFO variable will be used instead.
-#  :type TLS_CAINFO: file
-#  :keyword RETRIES: Specify the number of retries if download fails.
-#  :type RETRIES: int>=0 or INFINITY
-#]]
+# Setup and download CMakeMM
 function(cmmm)
   if(${CMAKE_VERSION} VERSION_LESS "3.5")
     include(CMakeParseArguments)

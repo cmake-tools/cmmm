@@ -1,3 +1,33 @@
+# cmake-format: off
+# Copyright 2023 flagarde
+
+#[=======================================================================[.rst:
+cmmm_modules_list
+-----------------
+
+.. cmake:command:: cmmm_modules_list
+
+Download a module list.
+
+.. cmake:variable:: NO_COLOR
+.. cmake:variable:: SHOW_PROGRESS
+.. cmake:variable:: ALWAYS_DOWNLOAD
+.. cmake:variable:: URI
+.. cmake:variable:: FILEPATH
+.. cmake:variable:: DESTINATION
+.. cmake:variable:: RETRIES
+.. cmake:variable:: INACTIVITY_TIMEOUT
+.. cmake:variable:: TIMEOUT
+.. cmake:variable:: USERPWD
+.. cmake:variable:: NETRC
+.. cmake:variable:: NETRC_FILE
+.. cmake:variable:: TLS_VERIFY
+.. cmake:variable:: TLS_CAINFO
+.. cmake:variable:: EXPECTED_HASH
+.. cmake:variable:: HTTPHEADER
+
+#]=======================================================================]
+
 if(${CMAKE_VERSION} VERSION_GREATER "3.9.6")
   include_guard(GLOBAL)
 endif()

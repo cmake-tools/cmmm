@@ -17,3 +17,4 @@ exclude_patterns = []
 html_theme = 'classic'
 html_theme_options = {}
 html_static_path = ['static']
+html_show_sourcelink = False
