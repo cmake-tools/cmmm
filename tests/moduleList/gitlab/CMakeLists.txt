@@ -1,3 +1,12 @@
+#
+# CMakeMM
+# CMake's missing Module Manager.
+#
+# SPDX-FileCopyrightText: 2023 flagarde
+#
+# SPDX-License-Identifier: MIT
+#
+
 set(BASENAME "moduleList/gitlab")
 add_test(NAME ${BASENAME}/default COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/default.cmake)
 add_test(NAME ${BASENAME}/modules COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/modules.cmake)

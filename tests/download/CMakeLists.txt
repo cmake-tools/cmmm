@@ -1,3 +1,12 @@
+#
+# CMakeMM
+# CMake's missing Module Manager.
+#
+# SPDX-FileCopyrightText: 2023 flagarde
+#
+# SPDX-License-Identifier: MIT
+#
+
 add_test(NAME download/fetchcontent COMMAND ${CMAKE_COMMAND} ${CMAKE_CURRENT_SOURCE_DIR}/FetchContent/)
 add_test(NAME download/default COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/default.cmake)
 add_test(NAME download/latest COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/latest.cmake)

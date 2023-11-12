@@ -1,3 +1,12 @@
+#
+# CMakeMM
+# CMake's missing Module Manager.
+#
+# SPDX-FileCopyrightText: 2023 flagarde
+#
+# SPDX-License-Identifier: MIT
+#
+
 set(CONF_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
 set(PROJECT_AUTHOR "flagarde")
 set(PROJECT_COPYRIGHT "2023, flagarde")

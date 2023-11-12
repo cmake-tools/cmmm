@@ -1,3 +1,12 @@
+#
+# CMakeMM
+# CMake's missing Module Manager.
+#
+# SPDX-FileCopyrightText: 2023 flagarde
+#
+# SPDX-License-Identifier: MIT
+#
+
 add_subdirectory(download)
 add_subdirectory(moduleList)
 add_test(NAME two_module_lists COMMAND ${CMAKE_COMMAND} -DCMMM_DIRECTORY=${CMAKE_SOURCE_DIR}/cmake -P ${CMAKE_CURRENT_SOURCE_DIR}/two_module_lists.cmake)

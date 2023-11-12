@@ -1,3 +1,6 @@
+/* Import the Sphinx theme style.  */
+@import url("default.css");
+
 /* Wrap sidebar content even within words so that long document names do not escape sidebar borders.  */
 div.sphinxsidebarwrapper {
   word-wrap: break-word;
@@ -20,10 +23,6 @@ div.sphinxsidebarwrapper {
   border: 1px solid #ac9;
   border-left: none;
   border-right: none;
-}
-
-/* Add additional styling to signature directive argument. */
-.signature .sig {
   margin-bottom: 5px;
   padding-left: calc(5px + 3em);
   text-indent: -3em;

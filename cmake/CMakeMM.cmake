@@ -1,3 +1,12 @@
+#
+# CMakeMM
+# CMake's missing Module Manager.
+#
+# SPDX-FileCopyrightText: 2023 flagarde
+#
+# SPDX-License-Identifier: MIT
+#
+
 # cmake-format: off
 # Copyright 2023 flagarde
 

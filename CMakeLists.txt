@@ -1,4 +1,13 @@
-cmake_minimum_required(VERSION 3.0...3.99 FATAL_ERROR)
+#
+# CMakeMM
+# CMake's missing Module Manager.
+#
+# SPDX-FileCopyrightText: 2023 flagarde
+#
+# SPDX-License-Identifier: MIT
+#
+
+cmake_minimum_required(VERSION 3.0...${CMAKE_VERSION} FATAL_ERROR)
 
 project(CMMM VERSION 0.1 LANGUAGES NONE)
 

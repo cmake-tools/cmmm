@@ -1,3 +1,12 @@
+#
+# CMakeMM
+# CMake's missing Module Manager.
+#
+# SPDX-FileCopyrightText: 2023 flagarde
+#
+# SPDX-License-Identifier: MIT
+#
+
 include("${CMMM_DIRECTORY}/GetCMakeMM.cmake")
 
 cmmm(VERSION latest NO_COLOR SHOW_PROGRESS INACTIVITY_TIMEOUT 42 TIMEOUT 24 TLS_VERIFY ON RETRIES 4224)

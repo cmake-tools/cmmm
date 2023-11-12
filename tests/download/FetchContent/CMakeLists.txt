@@ -1,3 +1,12 @@
+#
+# CMakeMM
+# CMake's missing Module Manager.
+#
+# SPDX-FileCopyrightText: 2023 flagarde
+#
+# SPDX-License-Identifier: MIT
+#
+
 if(NOT "${CMAKE_VERSION}" VERSION_LESS 3.11)
   cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
   project(FetchContentCMMM LANGUAGES NONE)

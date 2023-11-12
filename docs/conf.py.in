@@ -5,17 +5,39 @@ project = '@PROJECT_NAME@'
 copyright = '@PROJECT_COPYRIGHT@'
 author = '@PROJECT_AUTHOR@'
 release = '@PROJECT_VERSION@'
-#pygments_style = 'colors.CMakeTemplateStyle'
+pygments_style = 'colors.CMakeTemplateStyle'
 latex_engine = 'lualatex'
-extensions = ['sphinxcontrib.moderncmakedomain']
+extensions = ['sphinxcontrib.moderncmakedomain','sphinx.ext.intersphinx']
 latex_elements = {'fontpkg': '''''',}
-html_css_files = ['css/custom.css']
-
-templates_path = ['templates']
+html_css_files = ['@CONF_PATH@/css/custom.css']
+nitpicky = True
+smartquotes = False
+templates_path = ['@CONF_PATH@/templates']
 exclude_patterns = []
-
 html_theme = 'classic'
-html_theme_options = {}
-html_static_path = ['static']
+primary_domain = 'cmake'
+highlight_language = 'none'
+html_static_path = ['@CONF_PATH@/static']
 html_show_sourcelink = False
 html_show_sphinx = False
+html_theme_options = {
+    'footerbgcolor':    '#00182d',
+    'footertextcolor':  '#ffffff',
+    'sidebarbgcolor':   '#e4ece8',
+    'sidebarbtncolor':  '#00a94f',
+    'sidebartextcolor': '#333333',
+    'sidebarlinkcolor': '#00a94f',
+    'relbarbgcolor':    '#00529b',
+    'relbartextcolor':  '#ffffff',
+    'relbarlinkcolor':  '#ffffff',
+    'bgcolor':          '#ffffff',
+    'textcolor':        '#444444',
+    'headbgcolor':      '#f2f2f2',
+    'headtextcolor':    '#003564',
+    'headlinkcolor':    '#3d8ff2',
+    'linkcolor':        '#2b63a8',
+    'visitedlinkcolor': '#2b63a8',
+    'codebgcolor':      '#eeeeee',
+    'codetextcolor':    '#333333',
+    'body_max_width' : '100%',
+}

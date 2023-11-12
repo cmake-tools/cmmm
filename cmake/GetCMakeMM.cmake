@@ -1,89 +1,62 @@
-# cmake-format: off
-# Copyright 2023 flagarde
+#
+# CMakeMM
+# CMake's missing Module Manager.
+#
+# SPDX-FileCopyrightText: 2023 flagarde
+#
+# SPDX-License-Identifier: MIT
+#
 
 #[=======================================================================[.rst:
 cmmm
 ----
 
-.. cmake:command:: cmmm
-
 Download and configure CMakeMM
 
-.. cmake:envvar:: CLICOLOR_FORCE
+.. code-block:: cmake
 
-  Force ANSI escape code colors.
+  cmmm([NO_CHANGELOG] [NO_COLOR] [SHOW_PROGRESS] [VERSION <version>] [DESTINATION <path>] [INACTIVITY_TIMEOUT <seconds>] [TIMEOUT <seconds>] [TLS_VERIFY <ON|OFF>] [TLS_CAINFO <file>] [RETRIES <number/INFINITY>])
 
-  .. note::
-    See https://bixense.com/clicolors/ for the values
+Options
+^^^^^^^
 
-.. cmake:envvar:: CLICOLOR
+The options are:
 
-  Disable ANSI escape code colors.
+``NO_CHANGELOG``
+  **Optional** Disable changelog printing.
 
-  .. note::
-    See https://bixense.com/clicolors/ for the values
+``NO_COLOR``
+  **Optional** Disable the color on terminal.
 
-.. cmake:envvar:: CMMM_COLORS
+``SHOW_PROGRESS``
+  **Optional** Print progress information as status messages until the operation is complete.
 
-  Default colors.
+``VERSION <version>``
+  **Optional** Version of CMakeMM to download (use one of the versions in https://github.com/cmake-tools/cmmm/releases or 'latest' for the last version. Only for testing !).
 
-  .. note::
+``DESTINATION <path>``
+  **Optional** Path destination to install CMakeMM.
 
-    ``LS_COLORS`` syntax
+``INACTIVITY_TIMEOUT <seconds>``
+  **Optional** Terminate the operation after a period of inactivity.
 
-    (default=0;35:fatal_error=1;31:error=0;31:warn=0;33:info=0;32)
+``TIMEOUT <seconds>``
+  **Optional** Terminate the operation after a given total time has elapsed.
 
-.. cmake:variable:: CMMM_COLORS
+``TLS_VERIFY <ON|OFF>``
+  **Optional** Specify whether to verify the server certificate for ``https://`` URLs.
+  The default is to *not* verify. If this option is not specified, the value of the `CMAKE_TLS_VERIFY <https://cmake.org/cmake/help/latest/variable/CMAKE_TLS_VERIFY.html>`_ variable will be used instead.
 
-  Default colors.
+``TLS_CAINFO <file>``
+  **Optional** Specify a custom Certificate Authority file for ``https://`` URLs.
+  If this option is not specified, the value of the `CMAKE_TLS_CAINFO <https://cmake.org/cmake/help/latest/variable/CMAKE_TLS_CAINFO.html>`_ variable will be used instead.
 
-  .. note::
+``RETRIES <number/INFINITY>``
+  **Optional** Specify the number of retries if download fails.
 
-    ``LS_COLORS`` syntax
-
-    (default=0;35:fatal_error=1;31:error=0;31:warn=0;33:info=0;32)
-
-.. cmake:variable:: NO_COLOR
-
-  Disable colors.
-
-..  cmake:variable:: SHOW_PROGRESS
-
-  Print progress information as status messages until the operation is complete.
-
-.. cmake:variable:: NO_CHANGELOG
-
-  Disable changelog download.
-
-.. cmake:variable:: VERSION
-
-  Version of CMakeMM to download (use one of the versions in https://github.com/cmake-tools/cmmm/releases or 'latest' for the last version. Only for testing !).
-
-.. cmake:variable:: DESTINATION
-
-  Where to install files.
-
-.. cmake:variable:: INACTIVITY_TIMEOUT
-
-  Terminate the operation after a period of inactivity.
-
-.. cmake:variable:: TIMEOUT
-
-  Terminate the operation after a given total time has elapsed.
-
-.. cmake:variable:: TLS_VERIFY
-
-  Specify whether to verify the server certificate for https:// URLs. The default is to not verify. If this option is not specified, the value of the CMAKE_TLS_VERIFY variable will be used instead.
-
-.. cmake:variable:: TLS_CAINFO
-
-  Specify a custom Certificate Authority file for https:// URLs. If this option is not specified, the value of the CMAKE_TLS_CAINFO variable will be used instead.
-
-.. cmake:variable RETRIES
-
-  Specify the number of retries if download fails.
 #]=======================================================================]
 
+# cmake-format: off
 if(${CMAKE_VERSION} VERSION_GREATER "3.9.6")
   include_guard(GLOBAL)
 endif()
