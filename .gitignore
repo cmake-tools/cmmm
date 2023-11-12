@@ -67,3 +67,6 @@ Makefile
 
 # latest files
 docs/static/latest
+
+# python cache
+**/__pychache__/
