@@ -14,26 +14,84 @@
 cmmm_modules_list
 -----------------
 
-.. cmake:command:: cmmm_modules_list
-
 Download a module list.
 
-.. cmake:variable:: NO_COLOR
-.. cmake:variable:: SHOW_PROGRESS
-.. cmake:variable:: ALWAYS_DOWNLOAD
-.. cmake:variable:: URI
-.. cmake:variable:: FILEPATH
-.. cmake:variable:: DESTINATION
-.. cmake:variable:: RETRIES
-.. cmake:variable:: INACTIVITY_TIMEOUT
-.. cmake:variable:: TIMEOUT
-.. cmake:variable:: USERPWD
-.. cmake:variable:: NETRC
-.. cmake:variable:: NETRC_FILE
-.. cmake:variable:: TLS_VERIFY
-.. cmake:variable:: TLS_CAINFO
-.. cmake:variable:: EXPECTED_HASH
-.. cmake:variable:: HTTPHEADER
+.. code-block:: cmake
+
+  cmmm_modules_list(URI <uri>)
+
+  cmmm_modules_list(FILEPATH <path>)
+
+Options
+^^^^^^^
+
+The options are:
+
+``URI <uri>``
+  the URL or URI in the form provider:foo/bar#tag
+
+``FILEPATH <path>``
+  the file to download
+
+``NO_COLOR``
+  **Optional** Disable the color on terminal.
+
+``SHOW_PROGRESS``
+  **Optional** Print progress information as status messages until the operation is complete.
+
+``TLS_VERIFY <ON|OFF>``
+  **Optional** Specify whether to verify the server certificate for ``https://`` URLs.
+  The default is to *not* verify. If this option is not specified, the value of the `CMAKE_TLS_VERIFY <https://cmake.org/cmake/help/latest/variable/CMAKE_TLS_VERIFY.html>`_ variable will be used instead.
+
+``TLS_CAINFO <file>``
+  **Optional** Specify a custom Certificate Authority file for ``https://`` URLs.
+  If this option is not specified, the value of the `CMAKE_TLS_CAINFO <https://cmake.org/cmake/help/latest/variable/CMAKE_TLS_CAINFO.html>`_ variable will be used instead.
+
+``RETRIES <number/INFINITY>``
+  **Optional** Specify the number of retries if download fails.
+
+``INACTIVITY_TIMEOUT <seconds>``
+  **Optional** Terminate the operation after a period of inactivity.
+
+``TIMEOUT <seconds>``
+  **Optional** Terminate the operation after a given total time has elapsed.
+
+``DESTINATION <path>``
+  **Optional** Path destination to install CMakeMM.
+
+``USERPWD <username>:<password>``
+  **Optional** Set username and password for operation.
+
+``NETRC <level>``
+  **Optional** Specify whether the .netrc file is to be used for operation. If this option is not specified, the value of the `CMAKE_NETRC <https://cmake.org/cmake/help/latest/variable/CMAKE_NETRC.html>`_ variable will be used instead.
+
+  Valid levels are:
+
+    ``IGNORED``
+      The .netrc file is ignored. This is the default.
+
+    ``OPTIONAL``
+      The .netrc file is optional, and information in the URL is preferred. The file will be scanned to find which ever information is not specified in the URL.
+
+    ``REQUIRED``
+      The .netrc file is required, and information in the URL is ignored.
+
+``NETRC_FILE <file>``
+  **Optional** Specify an alternative .netrc file to the one in your home directory, if the ``NETRC`` level is **OPTIONAL** or **REQUIRED**.
+  If this option is not specified, the value of the `CMAKE_NETRC_FILE <https://cmake.org/cmake/help/latest/variable/CMAKE_NETRC_FILE.html>`_ variable will be used instead.
+
+``EXPECTED_HASH <algorithm>=<value>``
+  **Optional** Verify that the downloaded content hash matches the expected value, where <algorithm> is one of the algorithms supported by <HASH>.
+  If the file already exists and matches the hash, the download is skipped.
+  If the file already exists and does not match the hash, the file is downloaded again.
+  If after download the file does not match the hash, the operation fails with an error.
+  It is an error to specify this option if **DOWNLOAD** is not given a <file>.
+
+``HTTPHEADER <HTTP-header>``
+  **Optional** HTTP header for **DOWNLOAD** operation. `HTTPHEADER` can be repeated for multiple options.
+
+``ALWAYS_DOWNLOAD <bool>``
+  **Optional** Always redownload the list file.
 
 #]=======================================================================]
 
