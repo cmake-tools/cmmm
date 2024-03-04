@@ -550,9 +550,10 @@ macro(CMMM_INCLUDE_MODULE)
     endif()
     math(EXPR CMMM_RETRIES_DONE "${CMMM_RETRIES_DONE}+1")
   endwhile()
-
-  include("${ARG_DESTINATION}")
+  
   unlock()
+  include("${ARG_DESTINATION}")
+
   set(DESCRIPTION "${ARG_NAME}")
   if(DEFINED ARG_VERSION)
     set(DESCRIPTION "${DESCRIPTION} (v${ARG_VERSION})")
