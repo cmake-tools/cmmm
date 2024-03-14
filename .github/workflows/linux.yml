@@ -28,6 +28,9 @@ jobs:
     - name: 📥 Checkout
       uses: actions/checkout@v4
 
+    - name: Update CA
+      run: apt-get install -y ca-certificates ; update-ca-certificates
+
     - name: 📂 Load .env file
       if: hashFiles('.github/workflows/.env') != ''
       uses: xom9ikk/dotenv@v2.3.0
