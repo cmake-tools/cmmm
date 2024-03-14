@@ -36,8 +36,10 @@ jobs:
       uses: r-lib/actions/setup-tinytex@v2
       env:
         TINYTEX_INSTALLER: TinyTeX-0
+        TINYTEX_VERSION: 2024.03.13
     - name: 🟨 Install LaTeX packages
       run: |
+        tlmgr update --self
         tlmgr install latex-bin latex-tools-dev amsmath luatex85 hyperref polyglossia geometry cmap amsfonts luatexbase fncychap kvoptions float wrapfig capt-of framed fancyvrb upquote needspace tabulary varwidth colortbl booktabs parskip fancyhdr titlesec pdftexcmds infwarerr oberdiek ellipse pict2e epstopdf epstopdf-pkg
         tlmgr list --only-installed
     - name: ⬇️ Setup CMake
