@@ -36,7 +36,7 @@ jobs:
       uses: r-lib/actions/setup-tinytex@v2
       env:
         TINYTEX_INSTALLER: TinyTeX-0
-        TINYTEX_VERSION: 2024.03.13
+        TINYTEX_VERSION: 2023.12
     - name: 🟨 Install LaTeX packages
       run: |
         tlmgr update --self
