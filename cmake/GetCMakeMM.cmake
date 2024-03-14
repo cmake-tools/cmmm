@@ -84,7 +84,7 @@ function(cmmm)
     set(CMMM_NO_COLOR TRUE)
   elseif(DEFINED ENV{CI} AND NOT CMMM_NO_COLOR)
     set(CMMM_NO_COLOR FALSE)
-  elseif(WIN32 OR DEFINED ENV{DevEnvDir} OR DEFINED ENV{workspaceRoot} OR CMMM_NO_COLOR)
+  elseif(WIN32 OR DEFINED ENV{DevEnvDir} OR DEFINED ENV{workspaceRoot} OR DEFINED ENV{VSCODE_CLI} OR CMMM_NO_COLOR)
     set(CMMM_NO_COLOR TRUE)
   endif()
 
