@@ -11,6 +11,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true
 
+env:
+  CURL_SSL_BACKEND: Secure-Transport
+
 jobs:
   test:
     name: CMake v3.${{ matrix.cmake_version }}
