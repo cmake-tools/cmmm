@@ -8,3 +8,4 @@
 .gitignore export-ignore
 .pre-commit-config.yaml export-ignore
 .LICENSE export-ignore
+cmake/Changelog.cmake export-ignore
