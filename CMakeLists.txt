@@ -19,7 +19,6 @@ else()
   option(BUILD_TESTS "Build the tests" OFF)
   list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
   include(GetCMakeMM)
-  include(CMakeMM)
 endif()
 
 if(BUILD_TESTS)
