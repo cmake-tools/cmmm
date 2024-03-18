@@ -7,7 +7,7 @@
 # SPDX-License-Identifier: MIT
 #
 
-set(CMMM_LATEST_VERSION "1.0")
+set(CMMM_LATEST_VERSION "1.1")
 
 # Changelog
 function(cmmm_changelog)
