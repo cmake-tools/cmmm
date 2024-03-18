@@ -119,10 +119,6 @@ function(cmmm)
     string(ASCII 27 CMMM_ESC)
     set(CMMM_RESET_COLOR "[0m")
   endif()
-
-  if(DEFINED CMMM_FETCHED_VERSION AND NOT DEFINED CMMM_VERSION)
-    set(CMMM_VERSION "${CMMM_FETCHED_VERSION}")
-  endif()
   
   if(NOT DEFINED CMMM_VERSION OR CMMM_VERSION STREQUAL "latest")
     set(CMMM_URL "https://cmake-tools.github.io/cmmm")
