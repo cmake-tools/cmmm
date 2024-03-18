@@ -137,7 +137,7 @@ endfunction()
 
 # Do the update check
 function(cmmm_changes CHANGELOG_VERSION)
-  if(${CMMM_VERSION} VERSION_LESS ${CMMM_LATEST_VERSION})
+  if(${CMMM_VERSION} VERSION_LESS ${CHANGELOG_VERSION})
     message(STATUS "${CMMM_ESC}${CMMM_INFO_COLOR}[CMMM] Changes in v${CHANGELOG_VERSION} :${CMMM_ESC}${CMMM_RESET_COLOR}")
     foreach(CMMM_CHANGE IN LISTS ARGN)
       message(STATUS "${CMMM_ESC}${CMMM_INFO_COLOR}[CMMM]  ${CMMM_CHANGE}${CMMM_ESC}${CMMM_RESET_COLOR}")
@@ -147,11 +147,13 @@ endfunction()
 
 # Print the changelog
 function(cmmm_print_changelog)
-  message(STATUS "${CMMM_ESC}${CMMM_INFO_COLOR}[CMMM] Using CMakeMM v${CMMM_VERSION}. The latest is v${CMMM_LATEST_VERSION}.${CMMM_ESC}${CMMM_RESET_COLOR}")
-  message(STATUS "${CMMM_ESC}${CMMM_INFO_COLOR}[CMMM] Changes since v${CMMM_VERSION} include the following :${CMMM_ESC}${CMMM_RESET_COLOR}")
-  cmmm_changelog()
-  message(STATUS "${CMMM_ESC}${CMMM_INFO_COLOR}[CMMM] To update, simply change the value of VERSION in cmmm function.${CMMM_ESC}${CMMM_RESET_COLOR}")
-  message(STATUS "${CMMM_ESC}${CMMM_INFO_COLOR}[CMMM] You can disable these messages by setting NO_CHANGELOG in cmmm function.${CMMM_ESC}${CMMM_RESET_COLOR}")
+  if(${CMMM_VERSION} VERSION_LESS ${CMMM_LATEST_VERSION})
+    message(STATUS "${CMMM_ESC}${CMMM_INFO_COLOR}[CMMM] Using CMakeMM v${CMMM_VERSION}. The latest is v${CMMM_LATEST_VERSION}.${CMMM_ESC}${CMMM_RESET_COLOR}")
+    message(STATUS "${CMMM_ESC}${CMMM_INFO_COLOR}[CMMM] Changes since v${CMMM_VERSION} include the following :${CMMM_ESC}${CMMM_RESET_COLOR}")
+    cmmm_changelog()
+    message(STATUS "${CMMM_ESC}${CMMM_INFO_COLOR}[CMMM] To update, simply change the value of VERSION in cmmm function.${CMMM_ESC}${CMMM_RESET_COLOR}")
+    message(STATUS "${CMMM_ESC}${CMMM_INFO_COLOR}[CMMM] You can disable these messages by setting NO_CHANGELOG in cmmm function.${CMMM_ESC}${CMMM_RESET_COLOR}")
+  endif()
 endfunction()
 
 # Check updates
