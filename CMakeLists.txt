@@ -18,7 +18,7 @@ else()
   option(BUILD_DOCS "Build the docs" OFF)
   option(BUILD_TESTS "Build the tests" OFF)
   list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-  set(CMMM_FETCHED_TAG "${cmmm_VERSION}" CACHE INTERNAL "CMakeMM fetched version")
+  set(CMMM_FETCHED_TAG "v${cmmm_VERSION}" CACHE INTERNAL "Fetched CMakeMM tag")
   include(GetCMakeMM)
 endif()
 
