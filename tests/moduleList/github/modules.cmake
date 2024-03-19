@@ -11,7 +11,7 @@ include("${CMMM_DIRECTORY}/GetCMakeMM.cmake")
 
 cmmm(VERSION latest)
 
-cmmm_modules_list(URI "gh:cmake-tools/cmmm.test")
+cmmm_modules_list(URL "gh:cmake-tools/cmmm.test")
 
 message(STATUS "CMAKE_MODULE_PATH : ${CMAKE_MODULE_PATH}")
 

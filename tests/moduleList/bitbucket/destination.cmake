@@ -13,7 +13,7 @@ if(NOT "${CMAKE_VERSION}" VERSION_LESS 3.2)
 
   cmmm(VERSION latest DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/MyCMMM")
 
-  cmmm_modules_list(URI "bb:cmake-tools/cmmm.test" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/MyModuleList")
+  cmmm_modules_list(URL "bb:cmake-tools/cmmm.test" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/MyModuleList")
 
   message(STATUS "CMAKE_MODULE_PATH : ${CMAKE_MODULE_PATH}")
 
