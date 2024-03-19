@@ -18,7 +18,7 @@ Download a module list.
 
 .. code-block:: cmake
 
-  cmmm_modules_list(URI <uri>)
+  cmmm_modules_list(URL <url>)
 
   cmmm_modules_list(FILEPATH <path>)
 
@@ -27,8 +27,8 @@ Options
 
 The options are:
 
-``URI <uri>``
-  the URL or URI in the form provider:foo/bar#tag
+``URL <url>``
+  the URL in the form provider:foo/bar#tag
 
 ``FILEPATH <path>``
   the file to download
@@ -209,17 +209,17 @@ function(cmmm_parse_single_arg arg outArgs)
   # Look for a scheme
   if("${arg}" MATCHES "^([a-zA-Z]+):(.+)$")
     string(TOLOWER "${CMAKE_MATCH_1}" scheme)
-    set(uri "${CMAKE_MATCH_2}")
+    set(url "${CMAKE_MATCH_2}")
 
     # Check for CPM-specific schemes
     if(scheme STREQUAL "gh")
-      set(out "GITHUB_REPOSITORY;${uri}")
+      set(out "GITHUB_REPOSITORY;${url}")
       set(packageType "git")
     elseif(scheme STREQUAL "gl")
-      set(out "GITLAB_REPOSITORY;${uri}")
+      set(out "GITLAB_REPOSITORY;${url}")
       set(packageType "git")
     elseif(scheme STREQUAL "bb")
-      set(out "BITBUCKET_REPOSITORY;${uri}")
+      set(out "BITBUCKET_REPOSITORY;${url}")
       set(packageType "git")
     else()
       # Fall back to a URL
@@ -244,7 +244,7 @@ endfunction()
 function(cmmm_modules_list)
   cmake_parse_arguments(CMMM
                         "NO_COLOR;SHOW_PROGRESS;ALWAYS_DOWNLOAD"
-                        "URI;FILEPATH;DESTINATION;RETRIES;INACTIVITY_TIMEOUT;TIMEOUT;USERPWD;NETRC;NETRC_FILE;TLS_VERIFY;TLS_CAINFO;EXPECTED_HASH"
+                        "URL;FILEPATH;DESTINATION;RETRIES;INACTIVITY_TIMEOUT;TIMEOUT;USERPWD;NETRC;NETRC_FILE;TLS_VERIFY;TLS_CAINFO;EXPECTED_HASH"
                         "HTTPHEADER"
                         "${ARGN}")
 
@@ -303,13 +303,13 @@ function(cmmm_modules_list)
     get_property(CMMM_RETRIES GLOBAL PROPERTY CMMM_RETRIES)
   endif()
 
-  if(NOT DEFINED CMMM_URI)
-    message(STATUS "${CMMM_FATAL_ERROR_COLOR}[cmmm] URI must be present.${CMMM_RESET_COLOR}")
-    message(FATAL_ERROR "URI must be present.")
+  if(NOT DEFINED CMMM_URL)
+    message(STATUS "${CMMM_FATAL_ERROR_COLOR}[cmmm] URL must be present.${CMMM_RESET_COLOR}")
+    message(FATAL_ERROR "URL must be present.")
   endif()
 
-  cmmm_parse_single_arg(${CMMM_URI} CMMM_URI_RETURN)
-  cmake_parse_arguments(CMMM "" "URL;GITHUB_REPOSITORY;GITLAB_REPOSITORY;BITBUCKET_REPOSITORY;GIT_TAG" "" "${CMMM_URI_RETURN}")
+  cmmm_parse_single_arg(${CMMM_URL} CMMM_URL_RETURN)
+  cmake_parse_arguments(CMMM "" "URL;GITHUB_REPOSITORY;GITLAB_REPOSITORY;BITBUCKET_REPOSITORY;GIT_TAG" "" "${CMMM_URL_RETURN}")
 
   if(DEFINED CMMM_URL AND DEFINED CMMM_FILEPATH)
     message(STATUS "${CMMM_FATAL_ERROR_COLOR}[cmmm] FILEPATH is incompatible with an URL.${CMMM_RESET_COLOR}")
@@ -371,7 +371,7 @@ function(cmmm_modules_list)
     file(LOCK "${CMMM_DESTINATION}/${CMMM_FILE}.lock")
   endif()
 
-  if(DEFINED "CMAKEMM_INITIALIZED_${CMMM_DESTINATION}_${CMMM_FILE}" AND NOT "${CMAKEMM_INITIALIZED_${CMMM_DESTINATION}_${CMMM_FILE}}" STREQUAL "${CMMM_URI}")
+  if(DEFINED "CMAKEMM_INITIALIZED_${CMMM_DESTINATION}_${CMMM_FILE}" AND NOT "${CMAKEMM_INITIALIZED_${CMMM_DESTINATION}_${CMMM_FILE}}" STREQUAL "${CMMM_URL}")
     message(STATUS
             "${CMMM_ESC}${CMMM_FATAL_ERROR_COLOR}[cmmm] It already exists ${CMMM_DESTINATION}/${CMMM_FILE} downloaded from ${CMAKEMM_INITIALIZED_${CMMM_DESTINATION}_${CMMM_FILE}}.
             Impossible to download the one from ${CMMM_URL}/${CMMM_FILEPATH}.${CMMM_ESC}${CMMM_RESET_COLOR}")
@@ -383,29 +383,29 @@ function(cmmm_modules_list)
   set(CMMM_RETRIES_DONE "0")
   while(NOT DEFINED "CMAKEMM_INITIALIZED_${CMMM_DESTINATION}_${CMMM_FILE}" OR NOT EXISTS "${CMMM_DESTINATION}/${CMMM_FILE}" OR "${CMakeMMSHA256}" STREQUAL "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" OR CMMM_ALWAYS_DOWNLOAD)
     if(${CMMM_RETRIES_DONE} STREQUAL "0")
-      message(STATUS "${CMMM_ESC}${CMMM_DEFAULT_COLOR}[cmmm] Downloading ${CMMM_URI} to ${CMMM_DESTINATION}/${CMMM_FILE}${CMMM_ESC}${CMMM_RESET_COLOR}")
+      message(STATUS "${CMMM_ESC}${CMMM_DEFAULT_COLOR}[cmmm] Downloading ${CMMM_URL} to ${CMMM_DESTINATION}/${CMMM_FILE}${CMMM_ESC}${CMMM_RESET_COLOR}")
     else()
-      message(STATUS "${CMMM_ESC}${CMMM_INFO_COLOR}[cmmm] Retry downloading ${CMMM_URI} (${CMMM_RETRIES_DONE}/${CMMM_RETRIES}).${CMMM_ESC}${CMMM_RESET_COLOR}")
+      message(STATUS "${CMMM_ESC}${CMMM_INFO_COLOR}[cmmm] Retry downloading ${CMMM_URL} (${CMMM_RETRIES_DONE}/${CMMM_RETRIES}).${CMMM_ESC}${CMMM_RESET_COLOR}")
     endif()
 
     file(DOWNLOAD "${CMMM_URL}/${CMMM_FILEPATH}" "${CMMM_DESTINATION}/${CMMM_FILE}" ${CMMM_COMMAND} LOG CMMM_LOG STATUS CMAKECM_STATUS)
     list(GET CMAKECM_STATUS 0 CMAKECM_CODE)
     list(GET CMAKECM_STATUS 1 CMAKECM_MESSAGE)
     if(NOT "${CMAKECM_CODE}" STREQUAL "0")
-      message(STATUS "${Esc}${CMMM_ERROR_COLOR}[cmmm] Error downloading ${CMMM_URI} : ${CMAKECM_MESSAGE} (${CMAKECM_CODE}).${Esc}${CMMM_RESET_COLOR}")
+      message(STATUS "${Esc}${CMMM_ERROR_COLOR}[cmmm] Error downloading ${CMMM_URL} : ${CMAKECM_MESSAGE} (${CMAKECM_CODE}).${Esc}${CMMM_RESET_COLOR}")
     else()
       file(SHA256 "${CMMM_DESTINATION}/${CMMM_FILE}" CMakeMMSHA256)
       if("${CMakeMMSHA256}" STREQUAL "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855")
         file(REMOVE "${CMMM_DESTINATION}/${CMMM_FILE}")
-        message(STATUS "${Esc}${CMMM_ERROR_COLOR}[cmmm] Error downloading ${CMMM_URI} : Empty file.${Esc}${CMMM_RESET_COLOR}")
+        message(STATUS "${Esc}${CMMM_ERROR_COLOR}[cmmm] Error downloading ${CMMM_URL} : Empty file.${Esc}${CMMM_RESET_COLOR}")
       else()
         break()
       endif()
     endif()
     if("${CMMM_RETRIES_DONE}" STREQUAL "${CMMM_RETRIES}")
       unlock()
-      message(STATUS "${Esc}${CMMM_FATAL_ERROR_COLOR}[cmmm] Error downloading ${CMMM_URI}.${Esc}${CMMM_RESET_COLOR}")
-      message(FATAL_ERROR "Error downloading ${CMMM_URI}.")
+      message(STATUS "${Esc}${CMMM_FATAL_ERROR_COLOR}[cmmm] Error downloading ${CMMM_URL}.${Esc}${CMMM_RESET_COLOR}")
+      message(FATAL_ERROR "Error downloading ${CMMM_URL}.")
     endif()
     math(EXPR CMMM_RETRIES_DONE "${CMMM_RETRIES_DONE}+1")
   endwhile()
@@ -416,7 +416,7 @@ function(cmmm_modules_list)
   list(APPEND CMAKE_MODULE_PATH "${CMMM_DESTINATION}/premodules")
   set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" PARENT_SCOPE)
 
-  set(CMAKEMM_INITIALIZED_${CMMM_DESTINATION}_${CMMM_FILE} "${CMMM_URI}" CACHE INTERNAL "${CMMM_DESTINATION}/${CMMM_FILE} downloaded from ${CMMM_URI}.")
+  set(CMAKEMM_INITIALIZED_${CMMM_DESTINATION}_${CMMM_FILE} "${CMMM_URL}" CACHE INTERNAL "${CMMM_DESTINATION}/${CMMM_FILE} downloaded from ${CMMM_URL}.")
 endfunction()
 
 # Module definition
