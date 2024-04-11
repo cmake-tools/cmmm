@@ -309,6 +309,7 @@ function(cmmm_modules_list)
   endif()
 
   cmmm_parse_single_arg(${CMMM_URL} CMMM_URL_RETURN)
+  unset(CMMM_URL)
   cmake_parse_arguments(CMMM "" "URL;GITHUB_REPOSITORY;GITLAB_REPOSITORY;BITBUCKET_REPOSITORY;GIT_TAG" "" "${CMMM_URL_RETURN}")
 
   if(DEFINED CMMM_URL AND DEFINED CMMM_FILEPATH)
