@@ -9,7 +9,7 @@
 
 set(CONF_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
 set(PROJECT_AUTHOR "flagarde")
-set(PROJECT_COPYRIGHT "2023, flagarde")
+set(PROJECT_COPYRIGHT "2024, flagarde")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/conf.py.in" "${CMAKE_CURRENT_BINARY_DIR}/conf.py")
 file(COPY "${CMAKE_SOURCE_DIR}/cmake/Changelog.cmake" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/html/latest")
 file(COPY "${CMAKE_SOURCE_DIR}/cmake/CMakeMM.cmake" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/html/latest")
