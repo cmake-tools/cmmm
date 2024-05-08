@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 3.0...${CMAKE_VERSION} FATAL_ERROR)
 
 project(cmmm VERSION 1.0 LANGUAGES NONE)
 
-if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
+if("${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}")
   option(CMMM_BUILD_DOCS "Build the docs" ON)
   option(CMMM_BUILD_TESTS "Build the tests" ON)
 else()
