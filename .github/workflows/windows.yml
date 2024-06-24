@@ -33,6 +33,8 @@ jobs:
 
     - name: ⬇️ Setup Visual Studio
       uses: ilammy/msvc-dev-cmd@v1.13.0
+      with:
+        toolset: v141
 
     - name: ⬇️ Setup CMake
       uses: lukka/get-cmake@latest
