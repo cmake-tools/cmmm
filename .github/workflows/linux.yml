@@ -46,7 +46,8 @@ jobs:
         generator: "Ninja"
         source_dir: '${{ github.workspace }}/${{ env.CMAKE_SOURCE_PREFIX }}'
         binary_dir: '${{ env.CMAKE_BINARY_PREFIX }}'
-        variables: '-DCMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}'
+        variables: |
+          CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
 
     - name: 🧪 Test
       run: ctest -C ${{ env.CMAKE_BUILD_TYPE }} --output-on-failure -VV
