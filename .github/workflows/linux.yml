@@ -25,9 +25,6 @@ jobs:
     - name: 📥 Checkout
       uses: actions/checkout@v4
 
-    - name: Update CA
-      run: sudo apt-get install -y ca-certificates curl openssl libnss3 ; sudo update-ca-certificates ; export GIT_SSL_NO_VERIFY=true ; echo insecure >> ~/.curlrc
-
     - name: 📂 Load .env file
       if: hashFiles('.github/workflows/.env') != ''
       uses: xom9ikk/dotenv@v2.3.0
