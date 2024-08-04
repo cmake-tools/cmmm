@@ -22,7 +22,7 @@ jobs:
 
     steps:
     - name: Update
-      run: sudo apt-get install -y ca-certificates curl ; mkdir -p ~/.ssh ; touch  ~/.ssh/known_hosts; ssh-keygen -R github.com ; ssh-keyscan -R gitlab.com >> ~/.ssh/known_hosts ; curl -L https://api.github.com/meta | jq -r '.ssh_keys | .[]' | sed -e 's/^/github.com /' >> ~/.ssh/known_hosts
+      run: sudo apt-get install -y ca-certificates curl ; mkdir -p ~/.ssh ; touch  ~/.ssh/known_hosts; ssh-keygen -R github.com ; ssh-keyscan gitlab.com >> ~/.ssh/known_hosts ; curl -L https://api.github.com/meta | jq -r '.ssh_keys | .[]' | sed -e 's/^/github.com /' >> ~/.ssh/known_hosts
     
     - name: 📥 Checkout
       uses: actions/checkout@v4
