@@ -45,7 +45,6 @@ jobs:
         binary_dir: ${{ env.CMAKE_BINARY_PREFIX }}
         variables: |
           CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
-          CMAKE_TLS_VERIFY=FALSE
 
     - name: 🧪 Test
       run: ctest -C ${{ env.CMAKE_BUILD_TYPE }} --output-on-failure -VV
