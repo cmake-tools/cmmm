@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-    CURL_SSL_BACKEND: secure-transport
+  CURL_SSL_BACKEND: secure-transport
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
