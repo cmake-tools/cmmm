@@ -51,6 +51,7 @@ jobs:
         binary_dir: ${{ env.CMAKE_BINARY_PREFIX }}
         variables: |
           CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
+        list_cache_variables: -LA
 
     - name: 🧪 Test
       run: ctest -C ${{ env.CMAKE_BUILD_TYPE }} --output-on-failure
