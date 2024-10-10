@@ -12,6 +12,9 @@ on:
     - '!.github/workflows/macOS.yml'
   workflow_dispatch:
 
+env:
+  CMAKE_TLS_VERIFY: OFF
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true
