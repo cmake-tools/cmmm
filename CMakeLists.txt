@@ -22,7 +22,7 @@ else()
 endif()
 
 if(APPLE AND "${CMAKE_VERSION}" VERSION_LESS "3.7")
-  set(CMAKE_TLS_VERIFY "FALSE")
+  set(CMAKE_TLS_VERIFY FALSE)
 endif()
 
 if(CMMM_BUILD_TESTS)
