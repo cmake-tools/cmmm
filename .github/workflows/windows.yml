@@ -53,6 +53,7 @@ jobs:
         binary_dir: ${{ env.CMAKE_BINARY_PREFIX }}
         variables: |
           CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
+          CMMM_BUILD_DOCS=OFF
         list_cache_variables: advanced
 
     - name: 🧪 Test
