@@ -12,10 +12,6 @@ on:
     - '!.github/workflows/macOS.yml'
   workflow_dispatch:
 
-env:
-  CURL_SSL_BACKEND: secure-transport
-  CMAKE_TLS_VERIFY: false
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true
