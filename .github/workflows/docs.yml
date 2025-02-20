@@ -45,7 +45,7 @@ jobs:
       with:
         cmakeVersion: ^3
     - name: Env
-      run: env ; sphinx-build --version
+      run: micromamba activate docs
     - name: Run CMake
       run: cmake -S ${{ github.workspace }} -B ${{ github.workspace }}/build -G "Ninja Multi-Config" -Werror=dev -Werror=deprecated -DCMMM_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install
     - name: Generate docs
