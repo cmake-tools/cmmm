@@ -44,6 +44,8 @@ jobs:
       uses: lukka/get-cmake@latest
       with:
         cmakeVersion: ^3
+    - name: Env
+      run: env
     - name: Run CMake
       run: cmake -S ${{ github.workspace }} -B ${{ github.workspace }}/build -G "Ninja Multi-Config" -Werror=dev -Werror=deprecated -DCMMM_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/install
     - name: Generate docs
