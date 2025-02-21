@@ -71,7 +71,6 @@ jobs:
       with:
         mode: configure
         source_dir: ${{ env.CMAKE_SOURCE_PREFIX }}
-        binary_dir: ${{ env.CMAKE_BINARY_PREFIX }}
         install_prefix: ${{ github.workspace }}/${{ env.CMAKE_INSTALL_PREFIX }}
         variables: |
           CMAKE_PROGRAM_PATH=${{ env.MAMBA_ROOT_PREFIX }}/envs/${{ env.MAMBA_ENVIRONMENT }}/bin
