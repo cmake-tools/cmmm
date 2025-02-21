@@ -70,7 +70,7 @@ jobs:
       id: configure
       with:
         mode: configure
-        generator: Ninja
+        generator: 'Ninja'
         source_dir: ${{ github.workspace }}/${{ env.CMAKE_SOURCE_PREFIX }}
         binary_dir: ${{ env.CMAKE_BINARY_PREFIX }}
         install_prefix: ${{ env.CMAKE_INSTALL_PREFIX }}
