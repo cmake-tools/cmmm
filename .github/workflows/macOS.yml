@@ -32,7 +32,8 @@ jobs:
       uses: actions/checkout@v4
 
     - name: ⬇️ Set up curl CA bundle for CMake to work with https
-      run: 'echo SSL_CERT_FILE=/opt/local/share/curl/curl-ca-bundle.crt >> $GITHUB_ENV'
+      run: |
+        'echo SSL_CERT_FILE=/opt/local/share/curl/curl-ca-bundle.crt >> $GITHUB_ENV'; 'echo CMAKE_TLS_CAINFO=/opt/local/share/curl/curl-ca-bundle.crt'
 
     - name: 📂 Load .env file
       if: hashFiles('.github/workflows/.env') != ''
