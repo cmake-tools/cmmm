@@ -82,7 +82,6 @@ jobs:
         variables: |
           CMAKE_BUILD_TYPE=${{ env.CMAKE_BUILD_TYPE }}
           CMMM_BUILD_DOCS=OFF
-          CMAKE_TLS_CAINFO=/opt/local/share/curl/curl-ca-bundle.crt
         list_cache_variables: advanced
 
     - name: 🧪 Test
