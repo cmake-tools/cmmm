@@ -1,6 +1,9 @@
 ---
 name: macOS
 
+env:
+ CURL_SSL_BACKEND: SecureTransport
+
 on:
   push:
     paths-ignore:
