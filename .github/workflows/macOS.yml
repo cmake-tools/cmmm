@@ -64,7 +64,7 @@ jobs:
     - name: Install curl
       run : |
        brew reinstall curl ca-certificates
-       curl --etag-compare etag.txt --etag-save etag.txt --remote-name https://curl.se/ca/cacert.pem
+       curl --etag-compare cacert.pem --etag-save cacert.pem --remote-name https://curl.se/ca/cacert.pem
        sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ./cacert.pem
     - name: 📥 Checkout
       uses: actions/checkout@v4
