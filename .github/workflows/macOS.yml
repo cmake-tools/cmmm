@@ -57,6 +57,7 @@ jobs:
         - '3.30'
         - '3.31'
         - '4.0'
+        - '4.1'
     steps:
     - name: 📥 Checkout
       uses: actions/checkout@v5
