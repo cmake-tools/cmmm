@@ -76,7 +76,7 @@ jobs:
         cmakeVersion: ~${{ matrix.cmake_version }}
         ninjaVersion: ~1
 
-    - name: 🔧 Generate with v3.${{ matrix.cmake_version }}
+    - name: 🔧 Generate with v${{ matrix.cmake_version }}
       uses: cmake-tools/run-cmake@v0-alpha
       with:
         generator: Ninja
