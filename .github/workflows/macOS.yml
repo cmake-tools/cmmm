@@ -60,7 +60,7 @@ jobs:
         - '4.1'
     steps:
     - name: 📥 Checkout
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
 
     - name: 📂 Load .env file
       if: hashFiles('.github/workflows/.env') != ''
